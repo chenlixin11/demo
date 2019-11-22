@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.PatternInfoDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.PatternInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="project_info_id" jdbcType="INTEGER" property="projectInfoId" />
+    <result column="proj_no" jdbcType="VARCHAR" property="projNo" />
+    <result column="pattern_no" jdbcType="VARCHAR" property="patternNo" />
+    <result column="pattern_name" jdbcType="VARCHAR" property="patternName" />
+    <result column="chnl_no" jdbcType="VARCHAR" property="chnlNo" />
+    <result column="pattern_type" jdbcType="VARCHAR" property="patternType" />
+    <result column="loan_product" jdbcType="VARCHAR" property="loanProduct" />
+    <result column="credit_product" jdbcType="VARCHAR" property="creditProduct" />
+    <result column="rece_acc_type" jdbcType="VARCHAR" property="receAccType" />
+    <result column="pattern_amt" jdbcType="VARCHAR" property="patternAmt" />
+    <result column="loan_payment" jdbcType="VARCHAR" property="loanPayment" />
+    <result column="auto_pay_max_amt" jdbcType="VARCHAR" property="autoPayMaxAmt" />
+    <result column="repy_cyc" jdbcType="VARCHAR" property="repyCyc" />
+    <result column="finance_ratio_max" jdbcType="VARCHAR" property="financeRatioMax" />
+    <result column="bail_min_margin" jdbcType="VARCHAR" property="bailMinMargin" />
+    <result column="per_hgamt" jdbcType="VARCHAR" property="perHgamt" />
+    <result column="brwr_day_qot_mgt" jdbcType="VARCHAR" property="brwrDayQotMgt" />
+    <result column="bl_acc_hgamt" jdbcType="VARCHAR" property="blAccHgamt" />
+    <result column="single_busi_maxterm" jdbcType="VARCHAR" property="singleBusiMaxterm" />
+    <result column="single_busi_latestdate" jdbcType="VARCHAR" property="singleBusiLatestdate" />
+    <result column="chnl_day_qot_mgt" jdbcType="VARCHAR" property="chnlDayQotMgt" />
+    <result column="chnl_mrgn_mgt" jdbcType="VARCHAR" property="chnlMrgnMgt" />
+    <result column="margn_acc_no" jdbcType="VARCHAR" property="margnAccNo" />
+    <result column="wthr_rvl" jdbcType="VARCHAR" property="wthrRvl" />
+    <result column="wthr_rvl_ctr" jdbcType="VARCHAR" property="wthrRvlCtr" />
+    <result column="wthr_multi_dsbr" jdbcType="VARCHAR" property="wthrMultiDsbr" />
+    <result column="cust_guarant" jdbcType="VARCHAR" property="custGuarant" />
+    <result column="core_order_review" jdbcType="VARCHAR" property="coreOrderReview" />
+    <result column="core_right" jdbcType="VARCHAR" property="coreRight" />
+    <result column="single_family_loanconfirm" jdbcType="VARCHAR" property="singleFamilyLoanconfirm" />
+    <result column="is_guarantee" jdbcType="VARCHAR" property="isGuarantee" />
+    <result column="wthr_reg_cfm" jdbcType="VARCHAR" property="wthrRegCfm" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, project_info_id, proj_no, pattern_no, pattern_name, chnl_no, pattern_type, loan_product, 
+    credit_product, rece_acc_type, pattern_amt, loan_payment, auto_pay_max_amt, repy_cyc, 
+    finance_ratio_max, bail_min_margin, per_hgamt, brwr_day_qot_mgt, bl_acc_hgamt, single_busi_maxterm, 
+    single_busi_latestdate, chnl_day_qot_mgt, chnl_mrgn_mgt, margn_acc_no, wthr_rvl, 
+    wthr_rvl_ctr, wthr_multi_dsbr, cust_guarant, core_order_review, core_right, single_family_loanconfirm, 
+    is_guarantee, wthr_reg_cfm, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_pattern_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_pattern_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.PatternInfo">
+    insert into t_pattern_info (id, project_info_id, proj_no, 
+      pattern_no, pattern_name, chnl_no, 
+      pattern_type, loan_product, credit_product, 
+      rece_acc_type, pattern_amt, loan_payment, 
+      auto_pay_max_amt, repy_cyc, finance_ratio_max, 
+      bail_min_margin, per_hgamt, brwr_day_qot_mgt, 
+      bl_acc_hgamt, single_busi_maxterm, single_busi_latestdate, 
+      chnl_day_qot_mgt, chnl_mrgn_mgt, margn_acc_no, 
+      wthr_rvl, wthr_rvl_ctr, wthr_multi_dsbr, 
+      cust_guarant, core_order_review, core_right, 
+      single_family_loanconfirm, is_guarantee, wthr_reg_cfm, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{projectInfoId,jdbcType=INTEGER}, #{projNo,jdbcType=VARCHAR}, 
+      #{patternNo,jdbcType=VARCHAR}, #{patternName,jdbcType=VARCHAR}, #{chnlNo,jdbcType=VARCHAR}, 
+      #{patternType,jdbcType=VARCHAR}, #{loanProduct,jdbcType=VARCHAR}, #{creditProduct,jdbcType=VARCHAR}, 
+      #{receAccType,jdbcType=VARCHAR}, #{patternAmt,jdbcType=VARCHAR}, #{loanPayment,jdbcType=VARCHAR}, 
+      #{autoPayMaxAmt,jdbcType=VARCHAR}, #{repyCyc,jdbcType=VARCHAR}, #{financeRatioMax,jdbcType=VARCHAR}, 
+      #{bailMinMargin,jdbcType=VARCHAR}, #{perHgamt,jdbcType=VARCHAR}, #{brwrDayQotMgt,jdbcType=VARCHAR}, 
+      #{blAccHgamt,jdbcType=VARCHAR}, #{singleBusiMaxterm,jdbcType=VARCHAR}, #{singleBusiLatestdate,jdbcType=VARCHAR}, 
+      #{chnlDayQotMgt,jdbcType=VARCHAR}, #{chnlMrgnMgt,jdbcType=VARCHAR}, #{margnAccNo,jdbcType=VARCHAR}, 
+      #{wthrRvl,jdbcType=VARCHAR}, #{wthrRvlCtr,jdbcType=VARCHAR}, #{wthrMultiDsbr,jdbcType=VARCHAR}, 
+      #{custGuarant,jdbcType=VARCHAR}, #{coreOrderReview,jdbcType=VARCHAR}, #{coreRight,jdbcType=VARCHAR}, 
+      #{singleFamilyLoanconfirm,jdbcType=VARCHAR}, #{isGuarantee,jdbcType=VARCHAR}, #{wthrRegCfm,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.PatternInfo">
+    insert into t_pattern_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="projectInfoId != null">
+        project_info_id,
+      </if>
+      <if test="projNo != null">
+        proj_no,
+      </if>
+      <if test="patternNo != null">
+        pattern_no,
+      </if>
+      <if test="patternName != null">
+        pattern_name,
+      </if>
+      <if test="chnlNo != null">
+        chnl_no,
+      </if>
+      <if test="patternType != null">
+        pattern_type,
+      </if>
+      <if test="loanProduct != null">
+        loan_product,
+      </if>
+      <if test="creditProduct != null">
+        credit_product,
+      </if>
+      <if test="receAccType != null">
+        rece_acc_type,
+      </if>
+      <if test="patternAmt != null">
+        pattern_amt,
+      </if>
+      <if test="loanPayment != null">
+        loan_payment,
+      </if>
+      <if test="autoPayMaxAmt != null">
+        auto_pay_max_amt,
+      </if>
+      <if test="repyCyc != null">
+        repy_cyc,
+      </if>
+      <if test="financeRatioMax != null">
+        finance_ratio_max,
+      </if>
+      <if test="bailMinMargin != null">
+        bail_min_margin,
+      </if>
+      <if test="perHgamt != null">
+        per_hgamt,
+      </if>
+      <if test="brwrDayQotMgt != null">
+        brwr_day_qot_mgt,
+      </if>
+      <if test="blAccHgamt != null">
+        bl_acc_hgamt,
+      </if>
+      <if test="singleBusiMaxterm != null">
+        single_busi_maxterm,
+      </if>
+      <if test="singleBusiLatestdate != null">
+        single_busi_latestdate,
+      </if>
+      <if test="chnlDayQotMgt != null">
+        chnl_day_qot_mgt,
+      </if>
+      <if test="chnlMrgnMgt != null">
+        chnl_mrgn_mgt,
+      </if>
+      <if test="margnAccNo != null">
+        margn_acc_no,
+      </if>
+      <if test="wthrRvl != null">
+        wthr_rvl,
+      </if>
+      <if test="wthrRvlCtr != null">
+        wthr_rvl_ctr,
+      </if>
+      <if test="wthrMultiDsbr != null">
+        wthr_multi_dsbr,
+      </if>
+      <if test="custGuarant != null">
+        cust_guarant,
+      </if>
+      <if test="coreOrderReview != null">
+        core_order_review,
+      </if>
+      <if test="coreRight != null">
+        core_right,
+      </if>
+      <if test="singleFamilyLoanconfirm != null">
+        single_family_loanconfirm,
+      </if>
+      <if test="isGuarantee != null">
+        is_guarantee,
+      </if>
+      <if test="wthrRegCfm != null">
+        wthr_reg_cfm,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="projectInfoId != null">
+        #{projectInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="projNo != null">
+        #{projNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patternNo != null">
+        #{patternNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patternName != null">
+        #{patternName,jdbcType=VARCHAR},
+      </if>
+      <if test="chnlNo != null">
+        #{chnlNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patternType != null">
+        #{patternType,jdbcType=VARCHAR},
+      </if>
+      <if test="loanProduct != null">
+        #{loanProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="creditProduct != null">
+        #{creditProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="receAccType != null">
+        #{receAccType,jdbcType=VARCHAR},
+      </if>
+      <if test="patternAmt != null">
+        #{patternAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="loanPayment != null">
+        #{loanPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="autoPayMaxAmt != null">
+        #{autoPayMaxAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="repyCyc != null">
+        #{repyCyc,jdbcType=VARCHAR},
+      </if>
+      <if test="financeRatioMax != null">
+        #{financeRatioMax,jdbcType=VARCHAR},
+      </if>
+      <if test="bailMinMargin != null">
+        #{bailMinMargin,jdbcType=VARCHAR},
+      </if>
+      <if test="perHgamt != null">
+        #{perHgamt,jdbcType=VARCHAR},
+      </if>
+      <if test="brwrDayQotMgt != null">
+        #{brwrDayQotMgt,jdbcType=VARCHAR},
+      </if>
+      <if test="blAccHgamt != null">
+        #{blAccHgamt,jdbcType=VARCHAR},
+      </if>
+      <if test="singleBusiMaxterm != null">
+        #{singleBusiMaxterm,jdbcType=VARCHAR},
+      </if>
+      <if test="singleBusiLatestdate != null">
+        #{singleBusiLatestdate,jdbcType=VARCHAR},
+      </if>
+      <if test="chnlDayQotMgt != null">
+        #{chnlDayQotMgt,jdbcType=VARCHAR},
+      </if>
+      <if test="chnlMrgnMgt != null">
+        #{chnlMrgnMgt,jdbcType=VARCHAR},
+      </if>
+      <if test="margnAccNo != null">
+        #{margnAccNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wthrRvl != null">
+        #{wthrRvl,jdbcType=VARCHAR},
+      </if>
+      <if test="wthrRvlCtr != null">
+        #{wthrRvlCtr,jdbcType=VARCHAR},
+      </if>
+      <if test="wthrMultiDsbr != null">
+        #{wthrMultiDsbr,jdbcType=VARCHAR},
+      </if>
+      <if test="custGuarant != null">
+        #{custGuarant,jdbcType=VARCHAR},
+      </if>
+      <if test="coreOrderReview != null">
+        #{coreOrderReview,jdbcType=VARCHAR},
+      </if>
+      <if test="coreRight != null">
+        #{coreRight,jdbcType=VARCHAR},
+      </if>
+      <if test="singleFamilyLoanconfirm != null">
+        #{singleFamilyLoanconfirm,jdbcType=VARCHAR},
+      </if>
+      <if test="isGuarantee != null">
+        #{isGuarantee,jdbcType=VARCHAR},
+      </if>
+      <if test="wthrRegCfm != null">
+        #{wthrRegCfm,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.PatternInfo">
+    update t_pattern_info
+    <set>
+      <if test="projectInfoId != null">
+        project_info_id = #{projectInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="projNo != null">
+        proj_no = #{projNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patternNo != null">
+        pattern_no = #{patternNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patternName != null">
+        pattern_name = #{patternName,jdbcType=VARCHAR},
+      </if>
+      <if test="chnlNo != null">
+        chnl_no = #{chnlNo,jdbcType=VARCHAR},
+      </if>
+      <if test="patternType != null">
+        pattern_type = #{patternType,jdbcType=VARCHAR},
+      </if>
+      <if test="loanProduct != null">
+        loan_product = #{loanProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="creditProduct != null">
+        credit_product = #{creditProduct,jdbcType=VARCHAR},
+      </if>
+      <if test="receAccType != null">
+        rece_acc_type = #{receAccType,jdbcType=VARCHAR},
+      </if>
+      <if test="patternAmt != null">
+        pattern_amt = #{patternAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="loanPayment != null">
+        loan_payment = #{loanPayment,jdbcType=VARCHAR},
+      </if>
+      <if test="autoPayMaxAmt != null">
+        auto_pay_max_amt = #{autoPayMaxAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="repyCyc != null">
+        repy_cyc = #{repyCyc,jdbcType=VARCHAR},
+      </if>
+      <if test="financeRatioMax != null">
+        finance_ratio_max = #{financeRatioMax,jdbcType=VARCHAR},
+      </if>
+      <if test="bailMinMargin != null">
+        bail_min_margin = #{bailMinMargin,jdbcType=VARCHAR},
+      </if>
+      <if test="perHgamt != null">
+        per_hgamt = #{perHgamt,jdbcType=VARCHAR},
+      </if>
+      <if test="brwrDayQotMgt != null">
+        brwr_day_qot_mgt = #{brwrDayQotMgt,jdbcType=VARCHAR},
+      </if>
+      <if test="blAccHgamt != null">
+        bl_acc_hgamt = #{blAccHgamt,jdbcType=VARCHAR},
+      </if>
+      <if test="singleBusiMaxterm != null">
+        single_busi_maxterm = #{singleBusiMaxterm,jdbcType=VARCHAR},
+      </if>
+      <if test="singleBusiLatestdate != null">
+        single_busi_latestdate = #{singleBusiLatestdate,jdbcType=VARCHAR},
+      </if>
+      <if test="chnlDayQotMgt != null">
+        chnl_day_qot_mgt = #{chnlDayQotMgt,jdbcType=VARCHAR},
+      </if>
+      <if test="chnlMrgnMgt != null">
+        chnl_mrgn_mgt = #{chnlMrgnMgt,jdbcType=VARCHAR},
+      </if>
+      <if test="margnAccNo != null">
+        margn_acc_no = #{margnAccNo,jdbcType=VARCHAR},
+      </if>
+      <if test="wthrRvl != null">
+        wthr_rvl = #{wthrRvl,jdbcType=VARCHAR},
+      </if>
+      <if test="wthrRvlCtr != null">
+        wthr_rvl_ctr = #{wthrRvlCtr,jdbcType=VARCHAR},
+      </if>
+      <if test="wthrMultiDsbr != null">
+        wthr_multi_dsbr = #{wthrMultiDsbr,jdbcType=VARCHAR},
+      </if>
+      <if test="custGuarant != null">
+        cust_guarant = #{custGuarant,jdbcType=VARCHAR},
+      </if>
+      <if test="coreOrderReview != null">
+        core_order_review = #{coreOrderReview,jdbcType=VARCHAR},
+      </if>
+      <if test="coreRight != null">
+        core_right = #{coreRight,jdbcType=VARCHAR},
+      </if>
+      <if test="singleFamilyLoanconfirm != null">
+        single_family_loanconfirm = #{singleFamilyLoanconfirm,jdbcType=VARCHAR},
+      </if>
+      <if test="isGuarantee != null">
+        is_guarantee = #{isGuarantee,jdbcType=VARCHAR},
+      </if>
+      <if test="wthrRegCfm != null">
+        wthr_reg_cfm = #{wthrRegCfm,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.PatternInfo">
+    update t_pattern_info
+    set project_info_id = #{projectInfoId,jdbcType=INTEGER},
+      proj_no = #{projNo,jdbcType=VARCHAR},
+      pattern_no = #{patternNo,jdbcType=VARCHAR},
+      pattern_name = #{patternName,jdbcType=VARCHAR},
+      chnl_no = #{chnlNo,jdbcType=VARCHAR},
+      pattern_type = #{patternType,jdbcType=VARCHAR},
+      loan_product = #{loanProduct,jdbcType=VARCHAR},
+      credit_product = #{creditProduct,jdbcType=VARCHAR},
+      rece_acc_type = #{receAccType,jdbcType=VARCHAR},
+      pattern_amt = #{patternAmt,jdbcType=VARCHAR},
+      loan_payment = #{loanPayment,jdbcType=VARCHAR},
+      auto_pay_max_amt = #{autoPayMaxAmt,jdbcType=VARCHAR},
+      repy_cyc = #{repyCyc,jdbcType=VARCHAR},
+      finance_ratio_max = #{financeRatioMax,jdbcType=VARCHAR},
+      bail_min_margin = #{bailMinMargin,jdbcType=VARCHAR},
+      per_hgamt = #{perHgamt,jdbcType=VARCHAR},
+      brwr_day_qot_mgt = #{brwrDayQotMgt,jdbcType=VARCHAR},
+      bl_acc_hgamt = #{blAccHgamt,jdbcType=VARCHAR},
+      single_busi_maxterm = #{singleBusiMaxterm,jdbcType=VARCHAR},
+      single_busi_latestdate = #{singleBusiLatestdate,jdbcType=VARCHAR},
+      chnl_day_qot_mgt = #{chnlDayQotMgt,jdbcType=VARCHAR},
+      chnl_mrgn_mgt = #{chnlMrgnMgt,jdbcType=VARCHAR},
+      margn_acc_no = #{margnAccNo,jdbcType=VARCHAR},
+      wthr_rvl = #{wthrRvl,jdbcType=VARCHAR},
+      wthr_rvl_ctr = #{wthrRvlCtr,jdbcType=VARCHAR},
+      wthr_multi_dsbr = #{wthrMultiDsbr,jdbcType=VARCHAR},
+      cust_guarant = #{custGuarant,jdbcType=VARCHAR},
+      core_order_review = #{coreOrderReview,jdbcType=VARCHAR},
+      core_right = #{coreRight,jdbcType=VARCHAR},
+      single_family_loanconfirm = #{singleFamilyLoanconfirm,jdbcType=VARCHAR},
+      is_guarantee = #{isGuarantee,jdbcType=VARCHAR},
+      wthr_reg_cfm = #{wthrRegCfm,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

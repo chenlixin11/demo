@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.OrderPayDetailDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.OrderPayDetail">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_pay_id" jdbcType="INTEGER" property="orderPayId" />
+    <result column="order_info_id" jdbcType="INTEGER" property="orderInfoId" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="pay_amount" jdbcType="DECIMAL" property="payAmount" />
+    <result column="own_amount" jdbcType="DECIMAL" property="ownAmount" />
+    <result column="loan_amount" jdbcType="DECIMAL" property="loanAmount" />
+    <result column="receiver_acct" jdbcType="VARCHAR" property="receiverAcct" />
+    <result column="receiver_acct_name" jdbcType="VARCHAR" property="receiverAcctName" />
+    <result column="is_other_bank" jdbcType="INTEGER" property="isOtherBank" />
+    <result column="span_bank_pay_fee" jdbcType="DECIMAL" property="spanBankPayFee" />
+    <result column="order_pay_status" jdbcType="INTEGER" property="orderPayStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_pay_id, order_info_id, order_no, pay_amount, own_amount, loan_amount, receiver_acct, 
+    receiver_acct_name, is_other_bank, span_bank_pay_fee, order_pay_status, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_pay_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_order_pay_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.OrderPayDetail">
+    insert into t_order_pay_detail (id, order_pay_id, order_info_id, 
+      order_no, pay_amount, own_amount, 
+      loan_amount, receiver_acct, receiver_acct_name, 
+      is_other_bank, span_bank_pay_fee, order_pay_status, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{orderPayId,jdbcType=INTEGER}, #{orderInfoId,jdbcType=INTEGER}, 
+      #{orderNo,jdbcType=VARCHAR}, #{payAmount,jdbcType=DECIMAL}, #{ownAmount,jdbcType=DECIMAL}, 
+      #{loanAmount,jdbcType=DECIMAL}, #{receiverAcct,jdbcType=VARCHAR}, #{receiverAcctName,jdbcType=VARCHAR}, 
+      #{isOtherBank,jdbcType=INTEGER}, #{spanBankPayFee,jdbcType=DECIMAL}, #{orderPayStatus,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.OrderPayDetail">
+    insert into t_order_pay_detail
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orderPayId != null">
+        order_pay_id,
+      </if>
+      <if test="orderInfoId != null">
+        order_info_id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="payAmount != null">
+        pay_amount,
+      </if>
+      <if test="ownAmount != null">
+        own_amount,
+      </if>
+      <if test="loanAmount != null">
+        loan_amount,
+      </if>
+      <if test="receiverAcct != null">
+        receiver_acct,
+      </if>
+      <if test="receiverAcctName != null">
+        receiver_acct_name,
+      </if>
+      <if test="isOtherBank != null">
+        is_other_bank,
+      </if>
+      <if test="spanBankPayFee != null">
+        span_bank_pay_fee,
+      </if>
+      <if test="orderPayStatus != null">
+        order_pay_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderPayId != null">
+        #{orderPayId,jdbcType=INTEGER},
+      </if>
+      <if test="orderInfoId != null">
+        #{orderInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null">
+        #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ownAmount != null">
+        #{ownAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="loanAmount != null">
+        #{loanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="receiverAcct != null">
+        #{receiverAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAcctName != null">
+        #{receiverAcctName,jdbcType=VARCHAR},
+      </if>
+      <if test="isOtherBank != null">
+        #{isOtherBank,jdbcType=INTEGER},
+      </if>
+      <if test="spanBankPayFee != null">
+        #{spanBankPayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderPayStatus != null">
+        #{orderPayStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.OrderPayDetail">
+    update t_order_pay_detail
+    <set>
+      <if test="orderPayId != null">
+        order_pay_id = #{orderPayId,jdbcType=INTEGER},
+      </if>
+      <if test="orderInfoId != null">
+        order_info_id = #{orderInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null">
+        pay_amount = #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ownAmount != null">
+        own_amount = #{ownAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="loanAmount != null">
+        loan_amount = #{loanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="receiverAcct != null">
+        receiver_acct = #{receiverAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverAcctName != null">
+        receiver_acct_name = #{receiverAcctName,jdbcType=VARCHAR},
+      </if>
+      <if test="isOtherBank != null">
+        is_other_bank = #{isOtherBank,jdbcType=INTEGER},
+      </if>
+      <if test="spanBankPayFee != null">
+        span_bank_pay_fee = #{spanBankPayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="orderPayStatus != null">
+        order_pay_status = #{orderPayStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.OrderPayDetail">
+    update t_order_pay_detail
+    set order_pay_id = #{orderPayId,jdbcType=INTEGER},
+      order_info_id = #{orderInfoId,jdbcType=INTEGER},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      pay_amount = #{payAmount,jdbcType=DECIMAL},
+      own_amount = #{ownAmount,jdbcType=DECIMAL},
+      loan_amount = #{loanAmount,jdbcType=DECIMAL},
+      receiver_acct = #{receiverAcct,jdbcType=VARCHAR},
+      receiver_acct_name = #{receiverAcctName,jdbcType=VARCHAR},
+      is_other_bank = #{isOtherBank,jdbcType=INTEGER},
+      span_bank_pay_fee = #{spanBankPayFee,jdbcType=DECIMAL},
+      order_pay_status = #{orderPayStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

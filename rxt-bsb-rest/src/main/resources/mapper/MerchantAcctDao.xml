@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.MerchantAcctDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.MerchantAcct">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="merchant_info_id" jdbcType="INTEGER" property="merchantInfoId" />
+    <result column="mer_code" jdbcType="VARCHAR" property="merCode" />
+    <result column="sub_acct_no" jdbcType="VARCHAR" property="subAcctNo" />
+    <result column="sub_acct_name" jdbcType="VARCHAR" property="subAcctName" />
+    <result column="sub_acct_type" jdbcType="VARCHAR" property="subAcctType" />
+    <result column="bank_no" jdbcType="VARCHAR" property="bankNo" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="open_date" jdbcType="VARCHAR" property="openDate" />
+    <result column="acct_status" jdbcType="VARCHAR" property="acctStatus" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, merchant_info_id, mer_code, sub_acct_no, sub_acct_name, sub_acct_type, bank_no, 
+    bank_name, open_date, acct_status, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_merchant_acct
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_merchant_acct
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.MerchantAcct">
+    insert into t_merchant_acct (id, merchant_info_id, mer_code, 
+      sub_acct_no, sub_acct_name, sub_acct_type, 
+      bank_no, bank_name, open_date, 
+      acct_status, create_time)
+    values (#{id,jdbcType=INTEGER}, #{merchantInfoId,jdbcType=INTEGER}, #{merCode,jdbcType=VARCHAR}, 
+      #{subAcctNo,jdbcType=VARCHAR}, #{subAcctName,jdbcType=VARCHAR}, #{subAcctType,jdbcType=VARCHAR}, 
+      #{bankNo,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{openDate,jdbcType=VARCHAR}, 
+      #{acctStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.MerchantAcct">
+    insert into t_merchant_acct
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="merchantInfoId != null">
+        merchant_info_id,
+      </if>
+      <if test="merCode != null">
+        mer_code,
+      </if>
+      <if test="subAcctNo != null">
+        sub_acct_no,
+      </if>
+      <if test="subAcctName != null">
+        sub_acct_name,
+      </if>
+      <if test="subAcctType != null">
+        sub_acct_type,
+      </if>
+      <if test="bankNo != null">
+        bank_no,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="openDate != null">
+        open_date,
+      </if>
+      <if test="acctStatus != null">
+        acct_status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantInfoId != null">
+        #{merchantInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="merCode != null">
+        #{merCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subAcctNo != null">
+        #{subAcctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subAcctName != null">
+        #{subAcctName,jdbcType=VARCHAR},
+      </if>
+      <if test="subAcctType != null">
+        #{subAcctType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNo != null">
+        #{bankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="openDate != null">
+        #{openDate,jdbcType=VARCHAR},
+      </if>
+      <if test="acctStatus != null">
+        #{acctStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.MerchantAcct">
+    update t_merchant_acct
+    <set>
+      <if test="merchantInfoId != null">
+        merchant_info_id = #{merchantInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="merCode != null">
+        mer_code = #{merCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subAcctNo != null">
+        sub_acct_no = #{subAcctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subAcctName != null">
+        sub_acct_name = #{subAcctName,jdbcType=VARCHAR},
+      </if>
+      <if test="subAcctType != null">
+        sub_acct_type = #{subAcctType,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNo != null">
+        bank_no = #{bankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="openDate != null">
+        open_date = #{openDate,jdbcType=VARCHAR},
+      </if>
+      <if test="acctStatus != null">
+        acct_status = #{acctStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.MerchantAcct">
+    update t_merchant_acct
+    set merchant_info_id = #{merchantInfoId,jdbcType=INTEGER},
+      mer_code = #{merCode,jdbcType=VARCHAR},
+      sub_acct_no = #{subAcctNo,jdbcType=VARCHAR},
+      sub_acct_name = #{subAcctName,jdbcType=VARCHAR},
+      sub_acct_type = #{subAcctType,jdbcType=VARCHAR},
+      bank_no = #{bankNo,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      open_date = #{openDate,jdbcType=VARCHAR},
+      acct_status = #{acctStatus,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="findByPage" resultMap="BaseResultMap" parameterType="rxt.bsb.rest.po.MerchantAcct">
+    select
+    <include refid="Base_Column_List" />
+    from t_merchant_acct
+    where 1=1
+    <if test="merCode != null and merCode != ''">
+      and mer_code = #{merCode}
+    </if>
+    <if test="subAcctNo != null and subAcctNo != ''">
+      and sub_acct_no = #{subAcctNo}
+    </if>
+    <if test="subAcctName != null and subAcctName != ''">
+      and sub_acct_name like CONCAT('%',#{subAcctName}, '%')
+    </if>
+    order by create_time desc
+  </select>
+</mapper>

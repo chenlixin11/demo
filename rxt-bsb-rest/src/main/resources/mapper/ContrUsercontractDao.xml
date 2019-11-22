@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.ContrUsercontractDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.ContrUsercontract">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_info_id" jdbcType="INTEGER" property="userInfoId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="agent_info_id" jdbcType="INTEGER" property="agentInfoId" />
+    <result column="fee_standard" jdbcType="VARCHAR" property="feeStandard" />
+    <result column="is_agreed" jdbcType="INTEGER" property="isAgreed" />
+    <result column="agreed_time" jdbcType="TIMESTAMP" property="agreedTime" />
+    <result column="contract_path" jdbcType="VARCHAR" property="contractPath" />
+    <result column="rate" jdbcType="DECIMAL" property="rate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_info_id, user_name, agent_info_id, fee_standard, is_agreed, agreed_time, 
+    contract_path, rate, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_contr_usercontract
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_contr_usercontract
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.ContrUsercontract">
+    insert into t_contr_usercontract (id, user_info_id, user_name, 
+      agent_info_id, fee_standard, is_agreed, 
+      agreed_time, contract_path, rate, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{userInfoId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{agentInfoId,jdbcType=INTEGER}, #{feeStandard,jdbcType=VARCHAR}, #{isAgreed,jdbcType=INTEGER}, 
+      #{agreedTime,jdbcType=TIMESTAMP}, #{contractPath,jdbcType=VARCHAR}, #{rate,jdbcType=DECIMAL}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.ContrUsercontract">
+    insert into t_contr_usercontract
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userInfoId != null">
+        user_info_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="agentInfoId != null">
+        agent_info_id,
+      </if>
+      <if test="feeStandard != null">
+        fee_standard,
+      </if>
+      <if test="isAgreed != null">
+        is_agreed,
+      </if>
+      <if test="agreedTime != null">
+        agreed_time,
+      </if>
+      <if test="contractPath != null">
+        contract_path,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userInfoId != null">
+        #{userInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentInfoId != null">
+        #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="feeStandard != null">
+        #{feeStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgreed != null">
+        #{isAgreed,jdbcType=INTEGER},
+      </if>
+      <if test="agreedTime != null">
+        #{agreedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractPath != null">
+        #{contractPath,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.ContrUsercontract">
+    update t_contr_usercontract
+    <set>
+      <if test="userInfoId != null">
+        user_info_id = #{userInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentInfoId != null">
+        agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="feeStandard != null">
+        fee_standard = #{feeStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgreed != null">
+        is_agreed = #{isAgreed,jdbcType=INTEGER},
+      </if>
+      <if test="agreedTime != null">
+        agreed_time = #{agreedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="contractPath != null">
+        contract_path = #{contractPath,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=DECIMAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.ContrUsercontract">
+    update t_contr_usercontract
+    set user_info_id = #{userInfoId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      fee_standard = #{feeStandard,jdbcType=VARCHAR},
+      is_agreed = #{isAgreed,jdbcType=INTEGER},
+      agreed_time = #{agreedTime,jdbcType=TIMESTAMP},
+      contract_path = #{contractPath,jdbcType=VARCHAR},
+      rate = #{rate,jdbcType=DECIMAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByAgentInfoId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_contr_usercontract
+    where agent_info_id = #{agentInfoId,jdbcType=INTEGER}
+  </select>
+</mapper>

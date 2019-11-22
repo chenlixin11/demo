@@ -1,0 +1,68 @@
+server:
+  port: 8000
+
+feign:
+  hystrix:
+    enabled: false
+
+
+
+#服务注册配置
+eureka:
+  instance:
+    hostname: localhost
+    ip-address: localhost
+    instance-id: rxt-bsb-rest
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:9001/eureka/
+#      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+
+spring:
+  application:
+    name: RXT-BSB-REST
+
+
+  #数据库连接池配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver                   # mysql驱动包
+    url: jdbc:mysql://10.10.10.201:3306/rxt_bsb?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: Mysql_test@rxt.com
+    dbcp2:
+      min-idle: 10                                             # 数据库连接池的最小维持连接数
+      initial-size: 10                                         # 初始化连接数
+      max-total: 1000                                          # 最大连接数
+      max-wait-millis: 2000                                    # 等待连接获取的最大超时时间
+      validation-query: SELECT 1
+      test-while-idle: false
+      test-on-borrow: false
+      test-on-return: false
+
+
+
+# mybatis  相关
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml           # mybatis配置文件所在路径
+  type-aliases-package: rxt.bsb.rest.po                   # 所有Entity别名类所在包
+  mapper-locations: classpath*:mapper/**/*.xml         # mapper映射文件
+
+# logging 日志
+logging:
+  config: classpath:logging/logback-dev.xml
+
+# 自定义属性
+custom:
+  access-url: http://localhost:9000
+  file-server-url: http://10.10.10.121:33
+  file-io-path: /Users/leigero/Documents/upload
+
+DEST: src/
+HTML: freemarker.ftl
+FONT: simhei.ttf
+
+

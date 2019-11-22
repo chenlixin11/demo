@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.LoanApplyDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.LoanApply">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="agent_info_id" jdbcType="INTEGER" property="agentInfoId" />
+    <result column="dwm_aply_no" jdbcType="VARCHAR" property="dwmAplyNo" />
+    <result column="crg_aply_np" jdbcType="VARCHAR" property="crgAplyNp" />
+    <result column="loan_amt" jdbcType="VARCHAR" property="loanAmt" />
+    <result column="ccy" jdbcType="VARCHAR" property="ccy" />
+    <result column="loan_trm" jdbcType="INTEGER" property="loanTrm" />
+    <result column="loan_trm_unit" jdbcType="VARCHAR" property="loanTrmUnit" />
+    <result column="py_md" jdbcType="VARCHAR" property="pyMd" />
+    <result column="repy_dy" jdbcType="VARCHAR" property="repyDy" />
+    <result column="repy_itrv" jdbcType="INTEGER" property="repyItrv" />
+    <result column="repy_cyc" jdbcType="VARCHAR" property="repyCyc" />
+    <result column="rp_md" jdbcType="VARCHAR" property="rpMd" />
+    <result column="mode_number" jdbcType="VARCHAR" property="modeNumber" />
+    <result column="acc_no" jdbcType="VARCHAR" property="accNo" />
+    <result column="repayment_account" jdbcType="VARCHAR" property="repaymentAccount" />
+    <result column="apply_status" jdbcType="VARCHAR" property="applyStatus" />
+    <result column="handle_status" jdbcType="VARCHAR" property="handleStatus" />
+    <result column="fail_reason" jdbcType="VARCHAR" property="failReason" />
+    <result column="debt_no" jdbcType="VARCHAR" property="debtNo" />
+    <result column="contract_path" jdbcType="VARCHAR" property="contractPath" />
+    <result column="Create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, agent_info_id, dwm_aply_no, crg_aply_np, loan_amt, ccy, loan_trm, loan_trm_unit, 
+    py_md, repy_dy, repy_itrv, repy_cyc, rp_md, mode_number, acc_no, repayment_account, 
+    apply_status, handle_status, fail_reason, debt_no, contract_path, Create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_loan_apply
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_loan_apply
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.LoanApply">
+    insert into t_loan_apply (id, agent_info_id, dwm_aply_no, 
+      crg_aply_np, loan_amt, ccy, 
+      loan_trm, loan_trm_unit, py_md, 
+      repy_dy, repy_itrv, repy_cyc, 
+      rp_md, mode_number, acc_no, 
+      repayment_account, apply_status, handle_status, 
+      fail_reason, debt_no, contract_path, 
+      Create_time)
+    values (#{id,jdbcType=INTEGER}, #{agentInfoId,jdbcType=INTEGER}, #{dwmAplyNo,jdbcType=VARCHAR}, 
+      #{crgAplyNp,jdbcType=VARCHAR}, #{loanAmt,jdbcType=VARCHAR}, #{ccy,jdbcType=VARCHAR}, 
+      #{loanTrm,jdbcType=INTEGER}, #{loanTrmUnit,jdbcType=VARCHAR}, #{pyMd,jdbcType=VARCHAR}, 
+      #{repyDy,jdbcType=VARCHAR}, #{repyItrv,jdbcType=INTEGER}, #{repyCyc,jdbcType=VARCHAR}, 
+      #{rpMd,jdbcType=VARCHAR}, #{modeNumber,jdbcType=VARCHAR}, #{accNo,jdbcType=VARCHAR}, 
+      #{repaymentAccount,jdbcType=VARCHAR}, #{applyStatus,jdbcType=VARCHAR}, #{handleStatus,jdbcType=VARCHAR}, 
+      #{failReason,jdbcType=VARCHAR}, #{debtNo,jdbcType=VARCHAR}, #{contractPath,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.LoanApply">
+    insert into t_loan_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="agentInfoId != null">
+        agent_info_id,
+      </if>
+      <if test="dwmAplyNo != null">
+        dwm_aply_no,
+      </if>
+      <if test="crgAplyNp != null">
+        crg_aply_np,
+      </if>
+      <if test="loanAmt != null">
+        loan_amt,
+      </if>
+      <if test="ccy != null">
+        ccy,
+      </if>
+      <if test="loanTrm != null">
+        loan_trm,
+      </if>
+      <if test="loanTrmUnit != null">
+        loan_trm_unit,
+      </if>
+      <if test="pyMd != null">
+        py_md,
+      </if>
+      <if test="repyDy != null">
+        repy_dy,
+      </if>
+      <if test="repyItrv != null">
+        repy_itrv,
+      </if>
+      <if test="repyCyc != null">
+        repy_cyc,
+      </if>
+      <if test="rpMd != null">
+        rp_md,
+      </if>
+      <if test="modeNumber != null">
+        mode_number,
+      </if>
+      <if test="accNo != null">
+        acc_no,
+      </if>
+      <if test="repaymentAccount != null">
+        repayment_account,
+      </if>
+      <if test="applyStatus != null">
+        apply_status,
+      </if>
+      <if test="handleStatus != null">
+        handle_status,
+      </if>
+      <if test="failReason != null">
+        fail_reason,
+      </if>
+      <if test="debtNo != null">
+        debt_no,
+      </if>
+      <if test="contractPath != null">
+        contract_path,
+      </if>
+      <if test="createTime != null">
+        Create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentInfoId != null">
+        #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="dwmAplyNo != null">
+        #{dwmAplyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="crgAplyNp != null">
+        #{crgAplyNp,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmt != null">
+        #{loanAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="ccy != null">
+        #{ccy,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTrm != null">
+        #{loanTrm,jdbcType=INTEGER},
+      </if>
+      <if test="loanTrmUnit != null">
+        #{loanTrmUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="pyMd != null">
+        #{pyMd,jdbcType=VARCHAR},
+      </if>
+      <if test="repyDy != null">
+        #{repyDy,jdbcType=VARCHAR},
+      </if>
+      <if test="repyItrv != null">
+        #{repyItrv,jdbcType=INTEGER},
+      </if>
+      <if test="repyCyc != null">
+        #{repyCyc,jdbcType=VARCHAR},
+      </if>
+      <if test="rpMd != null">
+        #{rpMd,jdbcType=VARCHAR},
+      </if>
+      <if test="modeNumber != null">
+        #{modeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="accNo != null">
+        #{accNo,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentAccount != null">
+        #{repaymentAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="applyStatus != null">
+        #{applyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="handleStatus != null">
+        #{handleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="failReason != null">
+        #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="debtNo != null">
+        #{debtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPath != null">
+        #{contractPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.LoanApply">
+    update t_loan_apply
+    <set>
+      <if test="agentInfoId != null">
+        agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="dwmAplyNo != null">
+        dwm_aply_no = #{dwmAplyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="crgAplyNp != null">
+        crg_aply_np = #{crgAplyNp,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmt != null">
+        loan_amt = #{loanAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="ccy != null">
+        ccy = #{ccy,jdbcType=VARCHAR},
+      </if>
+      <if test="loanTrm != null">
+        loan_trm = #{loanTrm,jdbcType=INTEGER},
+      </if>
+      <if test="loanTrmUnit != null">
+        loan_trm_unit = #{loanTrmUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="pyMd != null">
+        py_md = #{pyMd,jdbcType=VARCHAR},
+      </if>
+      <if test="repyDy != null">
+        repy_dy = #{repyDy,jdbcType=VARCHAR},
+      </if>
+      <if test="repyItrv != null">
+        repy_itrv = #{repyItrv,jdbcType=INTEGER},
+      </if>
+      <if test="repyCyc != null">
+        repy_cyc = #{repyCyc,jdbcType=VARCHAR},
+      </if>
+      <if test="rpMd != null">
+        rp_md = #{rpMd,jdbcType=VARCHAR},
+      </if>
+      <if test="modeNumber != null">
+        mode_number = #{modeNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="accNo != null">
+        acc_no = #{accNo,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentAccount != null">
+        repayment_account = #{repaymentAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="applyStatus != null">
+        apply_status = #{applyStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="handleStatus != null">
+        handle_status = #{handleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="failReason != null">
+        fail_reason = #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="debtNo != null">
+        debt_no = #{debtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPath != null">
+        contract_path = #{contractPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        Create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.LoanApply">
+    update t_loan_apply
+    set agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      dwm_aply_no = #{dwmAplyNo,jdbcType=VARCHAR},
+      crg_aply_np = #{crgAplyNp,jdbcType=VARCHAR},
+      loan_amt = #{loanAmt,jdbcType=VARCHAR},
+      ccy = #{ccy,jdbcType=VARCHAR},
+      loan_trm = #{loanTrm,jdbcType=INTEGER},
+      loan_trm_unit = #{loanTrmUnit,jdbcType=VARCHAR},
+      py_md = #{pyMd,jdbcType=VARCHAR},
+      repy_dy = #{repyDy,jdbcType=VARCHAR},
+      repy_itrv = #{repyItrv,jdbcType=INTEGER},
+      repy_cyc = #{repyCyc,jdbcType=VARCHAR},
+      rp_md = #{rpMd,jdbcType=VARCHAR},
+      mode_number = #{modeNumber,jdbcType=VARCHAR},
+      acc_no = #{accNo,jdbcType=VARCHAR},
+      repayment_account = #{repaymentAccount,jdbcType=VARCHAR},
+      apply_status = #{applyStatus,jdbcType=VARCHAR},
+      handle_status = #{handleStatus,jdbcType=VARCHAR},
+      fail_reason = #{failReason,jdbcType=VARCHAR},
+      debt_no = #{debtNo,jdbcType=VARCHAR},
+      contract_path = #{contractPath,jdbcType=VARCHAR},
+      Create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

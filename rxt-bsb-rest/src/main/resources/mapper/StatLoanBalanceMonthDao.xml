@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.StatLoanBalanceMonthDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.StatLoanBalanceMonth">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="agent_info_id" jdbcType="INTEGER" property="agentInfoId" />
+    <result column="year_month" jdbcType="VARCHAR" property="yearMonth" />
+    <result column="month_balance" jdbcType="DECIMAL" property="monthBalance" />
+    <result column="eachday_balance" jdbcType="DECIMAL" property="eachdayBalance" />
+    <result column="fee_side" jdbcType="INTEGER" property="feeSide" />
+    <result column="loan_deduct_way" jdbcType="INTEGER" property="loanDeductWay" />
+    <result column="calc_rate_mode" jdbcType="INTEGER" property="calcRateMode" />
+    <result column="rate" jdbcType="VARCHAR" property="rate" />
+    <result column="plat_rate" jdbcType="VARCHAR" property="platRate" />
+    <result column="plat_fee" jdbcType="DECIMAL" property="platFee" />
+    <result column="interest_collection_manner" jdbcType="INTEGER" property="interestCollectionManner" />
+    <result column="is_charged" jdbcType="INTEGER" property="isCharged" />
+    <result column="deduct_finish_time" jdbcType="TIMESTAMP" property="deductFinishTime" />
+    <result column="plat_fee_out_flag" jdbcType="INTEGER" property="platFeeOutFlag" />
+    <result column="plat_fee_out_time" jdbcType="TIMESTAMP" property="platFeeOutTime" />
+    <result column="plat_cumulative_charge_amount" jdbcType="DECIMAL" property="platCumulativeChargeAmount" />
+    <result column="plat_cumulative_feeout_amount" jdbcType="DECIMAL" property="platCumulativeFeeoutAmount" />
+    <result column="mer_rate" jdbcType="VARCHAR" property="merRate" />
+    <result column="mer_fee" jdbcType="DECIMAL" property="merFee" />
+    <result column="is_mer_charged" jdbcType="INTEGER" property="isMerCharged" />
+    <result column="mer_deduct_finish_time" jdbcType="TIMESTAMP" property="merDeductFinishTime" />
+    <result column="mer_fee_out_flag" jdbcType="INTEGER" property="merFeeOutFlag" />
+    <result column="mer_fee_out_time" jdbcType="TIMESTAMP" property="merFeeOutTime" />
+    <result column="loan_acctcode" jdbcType="VARCHAR" property="loanAcctcode" />
+    <result column="cust_fee_in_status" jdbcType="INTEGER" property="custFeeInStatus" />
+    <result column="cust_fee_in_sumamount" jdbcType="DECIMAL" property="custFeeInSumamount" />
+    <result column="cust_fee_in_time" jdbcType="TIMESTAMP" property="custFeeInTime" />
+    <result column="mer_fee_in_status" jdbcType="INTEGER" property="merFeeInStatus" />
+    <result column="mer_fee_in_sumamount" jdbcType="DECIMAL" property="merFeeInSumamount" />
+    <result column="mer_fee_in_time" jdbcType="TIMESTAMP" property="merFeeInTime" />
+    <result column="generation" jdbcType="INTEGER" property="generation" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, agent_info_id, year_month, month_balance, eachday_balance, fee_side, loan_deduct_way, 
+    calc_rate_mode, rate, plat_rate, plat_fee, interest_collection_manner, is_charged, 
+    deduct_finish_time, plat_fee_out_flag, plat_fee_out_time, plat_cumulative_charge_amount, 
+    plat_cumulative_feeout_amount, mer_rate, mer_fee, is_mer_charged, mer_deduct_finish_time, 
+    mer_fee_out_flag, mer_fee_out_time, loan_acctcode, cust_fee_in_status, cust_fee_in_sumamount, 
+    cust_fee_in_time, mer_fee_in_status, mer_fee_in_sumamount, mer_fee_in_time, generation, 
+    remarks, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_stat_loan_balance_month
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_stat_loan_balance_month
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.StatLoanBalanceMonth">
+    insert into t_stat_loan_balance_month (id, agent_info_id, year_month, 
+      month_balance, eachday_balance, fee_side, 
+      loan_deduct_way, calc_rate_mode, rate, 
+      plat_rate, plat_fee, interest_collection_manner, 
+      is_charged, deduct_finish_time, plat_fee_out_flag, 
+      plat_fee_out_time, plat_cumulative_charge_amount, 
+      plat_cumulative_feeout_amount, mer_rate, mer_fee, 
+      is_mer_charged, mer_deduct_finish_time, mer_fee_out_flag, 
+      mer_fee_out_time, loan_acctcode, cust_fee_in_status, 
+      cust_fee_in_sumamount, cust_fee_in_time, mer_fee_in_status, 
+      mer_fee_in_sumamount, mer_fee_in_time, generation, 
+      remarks, create_time)
+    values (#{id,jdbcType=INTEGER}, #{agentInfoId,jdbcType=INTEGER}, #{yearMonth,jdbcType=VARCHAR}, 
+      #{monthBalance,jdbcType=DECIMAL}, #{eachdayBalance,jdbcType=DECIMAL}, #{feeSide,jdbcType=INTEGER}, 
+      #{loanDeductWay,jdbcType=INTEGER}, #{calcRateMode,jdbcType=INTEGER}, #{rate,jdbcType=VARCHAR}, 
+      #{platRate,jdbcType=VARCHAR}, #{platFee,jdbcType=DECIMAL}, #{interestCollectionManner,jdbcType=INTEGER}, 
+      #{isCharged,jdbcType=INTEGER}, #{deductFinishTime,jdbcType=TIMESTAMP}, #{platFeeOutFlag,jdbcType=INTEGER}, 
+      #{platFeeOutTime,jdbcType=TIMESTAMP}, #{platCumulativeChargeAmount,jdbcType=DECIMAL}, 
+      #{platCumulativeFeeoutAmount,jdbcType=DECIMAL}, #{merRate,jdbcType=VARCHAR}, #{merFee,jdbcType=DECIMAL}, 
+      #{isMerCharged,jdbcType=INTEGER}, #{merDeductFinishTime,jdbcType=TIMESTAMP}, #{merFeeOutFlag,jdbcType=INTEGER}, 
+      #{merFeeOutTime,jdbcType=TIMESTAMP}, #{loanAcctcode,jdbcType=VARCHAR}, #{custFeeInStatus,jdbcType=INTEGER}, 
+      #{custFeeInSumamount,jdbcType=DECIMAL}, #{custFeeInTime,jdbcType=TIMESTAMP}, #{merFeeInStatus,jdbcType=INTEGER}, 
+      #{merFeeInSumamount,jdbcType=DECIMAL}, #{merFeeInTime,jdbcType=TIMESTAMP}, #{generation,jdbcType=INTEGER}, 
+      #{remarks,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.StatLoanBalanceMonth">
+    insert into t_stat_loan_balance_month
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="agentInfoId != null">
+        agent_info_id,
+      </if>
+      <if test="yearMonth != null">
+        year_month,
+      </if>
+      <if test="monthBalance != null">
+        month_balance,
+      </if>
+      <if test="eachdayBalance != null">
+        eachday_balance,
+      </if>
+      <if test="feeSide != null">
+        fee_side,
+      </if>
+      <if test="loanDeductWay != null">
+        loan_deduct_way,
+      </if>
+      <if test="calcRateMode != null">
+        calc_rate_mode,
+      </if>
+      <if test="rate != null">
+        rate,
+      </if>
+      <if test="platRate != null">
+        plat_rate,
+      </if>
+      <if test="platFee != null">
+        plat_fee,
+      </if>
+      <if test="interestCollectionManner != null">
+        interest_collection_manner,
+      </if>
+      <if test="isCharged != null">
+        is_charged,
+      </if>
+      <if test="deductFinishTime != null">
+        deduct_finish_time,
+      </if>
+      <if test="platFeeOutFlag != null">
+        plat_fee_out_flag,
+      </if>
+      <if test="platFeeOutTime != null">
+        plat_fee_out_time,
+      </if>
+      <if test="platCumulativeChargeAmount != null">
+        plat_cumulative_charge_amount,
+      </if>
+      <if test="platCumulativeFeeoutAmount != null">
+        plat_cumulative_feeout_amount,
+      </if>
+      <if test="merRate != null">
+        mer_rate,
+      </if>
+      <if test="merFee != null">
+        mer_fee,
+      </if>
+      <if test="isMerCharged != null">
+        is_mer_charged,
+      </if>
+      <if test="merDeductFinishTime != null">
+        mer_deduct_finish_time,
+      </if>
+      <if test="merFeeOutFlag != null">
+        mer_fee_out_flag,
+      </if>
+      <if test="merFeeOutTime != null">
+        mer_fee_out_time,
+      </if>
+      <if test="loanAcctcode != null">
+        loan_acctcode,
+      </if>
+      <if test="custFeeInStatus != null">
+        cust_fee_in_status,
+      </if>
+      <if test="custFeeInSumamount != null">
+        cust_fee_in_sumamount,
+      </if>
+      <if test="custFeeInTime != null">
+        cust_fee_in_time,
+      </if>
+      <if test="merFeeInStatus != null">
+        mer_fee_in_status,
+      </if>
+      <if test="merFeeInSumamount != null">
+        mer_fee_in_sumamount,
+      </if>
+      <if test="merFeeInTime != null">
+        mer_fee_in_time,
+      </if>
+      <if test="generation != null">
+        generation,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentInfoId != null">
+        #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="yearMonth != null">
+        #{yearMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="monthBalance != null">
+        #{monthBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="eachdayBalance != null">
+        #{eachdayBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="feeSide != null">
+        #{feeSide,jdbcType=INTEGER},
+      </if>
+      <if test="loanDeductWay != null">
+        #{loanDeductWay,jdbcType=INTEGER},
+      </if>
+      <if test="calcRateMode != null">
+        #{calcRateMode,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="platRate != null">
+        #{platRate,jdbcType=VARCHAR},
+      </if>
+      <if test="platFee != null">
+        #{platFee,jdbcType=DECIMAL},
+      </if>
+      <if test="interestCollectionManner != null">
+        #{interestCollectionManner,jdbcType=INTEGER},
+      </if>
+      <if test="isCharged != null">
+        #{isCharged,jdbcType=INTEGER},
+      </if>
+      <if test="deductFinishTime != null">
+        #{deductFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platFeeOutFlag != null">
+        #{platFeeOutFlag,jdbcType=INTEGER},
+      </if>
+      <if test="platFeeOutTime != null">
+        #{platFeeOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platCumulativeChargeAmount != null">
+        #{platCumulativeChargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="platCumulativeFeeoutAmount != null">
+        #{platCumulativeFeeoutAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="merRate != null">
+        #{merRate,jdbcType=VARCHAR},
+      </if>
+      <if test="merFee != null">
+        #{merFee,jdbcType=DECIMAL},
+      </if>
+      <if test="isMerCharged != null">
+        #{isMerCharged,jdbcType=INTEGER},
+      </if>
+      <if test="merDeductFinishTime != null">
+        #{merDeductFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merFeeOutFlag != null">
+        #{merFeeOutFlag,jdbcType=INTEGER},
+      </if>
+      <if test="merFeeOutTime != null">
+        #{merFeeOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanAcctcode != null">
+        #{loanAcctcode,jdbcType=VARCHAR},
+      </if>
+      <if test="custFeeInStatus != null">
+        #{custFeeInStatus,jdbcType=INTEGER},
+      </if>
+      <if test="custFeeInSumamount != null">
+        #{custFeeInSumamount,jdbcType=DECIMAL},
+      </if>
+      <if test="custFeeInTime != null">
+        #{custFeeInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merFeeInStatus != null">
+        #{merFeeInStatus,jdbcType=INTEGER},
+      </if>
+      <if test="merFeeInSumamount != null">
+        #{merFeeInSumamount,jdbcType=DECIMAL},
+      </if>
+      <if test="merFeeInTime != null">
+        #{merFeeInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="generation != null">
+        #{generation,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.StatLoanBalanceMonth">
+    update t_stat_loan_balance_month
+    <set>
+      <if test="agentInfoId != null">
+        agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="yearMonth != null">
+        year_month = #{yearMonth,jdbcType=VARCHAR},
+      </if>
+      <if test="monthBalance != null">
+        month_balance = #{monthBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="eachdayBalance != null">
+        eachday_balance = #{eachdayBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="feeSide != null">
+        fee_side = #{feeSide,jdbcType=INTEGER},
+      </if>
+      <if test="loanDeductWay != null">
+        loan_deduct_way = #{loanDeductWay,jdbcType=INTEGER},
+      </if>
+      <if test="calcRateMode != null">
+        calc_rate_mode = #{calcRateMode,jdbcType=INTEGER},
+      </if>
+      <if test="rate != null">
+        rate = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="platRate != null">
+        plat_rate = #{platRate,jdbcType=VARCHAR},
+      </if>
+      <if test="platFee != null">
+        plat_fee = #{platFee,jdbcType=DECIMAL},
+      </if>
+      <if test="interestCollectionManner != null">
+        interest_collection_manner = #{interestCollectionManner,jdbcType=INTEGER},
+      </if>
+      <if test="isCharged != null">
+        is_charged = #{isCharged,jdbcType=INTEGER},
+      </if>
+      <if test="deductFinishTime != null">
+        deduct_finish_time = #{deductFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platFeeOutFlag != null">
+        plat_fee_out_flag = #{platFeeOutFlag,jdbcType=INTEGER},
+      </if>
+      <if test="platFeeOutTime != null">
+        plat_fee_out_time = #{platFeeOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="platCumulativeChargeAmount != null">
+        plat_cumulative_charge_amount = #{platCumulativeChargeAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="platCumulativeFeeoutAmount != null">
+        plat_cumulative_feeout_amount = #{platCumulativeFeeoutAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="merRate != null">
+        mer_rate = #{merRate,jdbcType=VARCHAR},
+      </if>
+      <if test="merFee != null">
+        mer_fee = #{merFee,jdbcType=DECIMAL},
+      </if>
+      <if test="isMerCharged != null">
+        is_mer_charged = #{isMerCharged,jdbcType=INTEGER},
+      </if>
+      <if test="merDeductFinishTime != null">
+        mer_deduct_finish_time = #{merDeductFinishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merFeeOutFlag != null">
+        mer_fee_out_flag = #{merFeeOutFlag,jdbcType=INTEGER},
+      </if>
+      <if test="merFeeOutTime != null">
+        mer_fee_out_time = #{merFeeOutTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanAcctcode != null">
+        loan_acctcode = #{loanAcctcode,jdbcType=VARCHAR},
+      </if>
+      <if test="custFeeInStatus != null">
+        cust_fee_in_status = #{custFeeInStatus,jdbcType=INTEGER},
+      </if>
+      <if test="custFeeInSumamount != null">
+        cust_fee_in_sumamount = #{custFeeInSumamount,jdbcType=DECIMAL},
+      </if>
+      <if test="custFeeInTime != null">
+        cust_fee_in_time = #{custFeeInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="merFeeInStatus != null">
+        mer_fee_in_status = #{merFeeInStatus,jdbcType=INTEGER},
+      </if>
+      <if test="merFeeInSumamount != null">
+        mer_fee_in_sumamount = #{merFeeInSumamount,jdbcType=DECIMAL},
+      </if>
+      <if test="merFeeInTime != null">
+        mer_fee_in_time = #{merFeeInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="generation != null">
+        generation = #{generation,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.StatLoanBalanceMonth">
+    update t_stat_loan_balance_month
+    set agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      year_month = #{yearMonth,jdbcType=VARCHAR},
+      month_balance = #{monthBalance,jdbcType=DECIMAL},
+      eachday_balance = #{eachdayBalance,jdbcType=DECIMAL},
+      fee_side = #{feeSide,jdbcType=INTEGER},
+      loan_deduct_way = #{loanDeductWay,jdbcType=INTEGER},
+      calc_rate_mode = #{calcRateMode,jdbcType=INTEGER},
+      rate = #{rate,jdbcType=VARCHAR},
+      plat_rate = #{platRate,jdbcType=VARCHAR},
+      plat_fee = #{platFee,jdbcType=DECIMAL},
+      interest_collection_manner = #{interestCollectionManner,jdbcType=INTEGER},
+      is_charged = #{isCharged,jdbcType=INTEGER},
+      deduct_finish_time = #{deductFinishTime,jdbcType=TIMESTAMP},
+      plat_fee_out_flag = #{platFeeOutFlag,jdbcType=INTEGER},
+      plat_fee_out_time = #{platFeeOutTime,jdbcType=TIMESTAMP},
+      plat_cumulative_charge_amount = #{platCumulativeChargeAmount,jdbcType=DECIMAL},
+      plat_cumulative_feeout_amount = #{platCumulativeFeeoutAmount,jdbcType=DECIMAL},
+      mer_rate = #{merRate,jdbcType=VARCHAR},
+      mer_fee = #{merFee,jdbcType=DECIMAL},
+      is_mer_charged = #{isMerCharged,jdbcType=INTEGER},
+      mer_deduct_finish_time = #{merDeductFinishTime,jdbcType=TIMESTAMP},
+      mer_fee_out_flag = #{merFeeOutFlag,jdbcType=INTEGER},
+      mer_fee_out_time = #{merFeeOutTime,jdbcType=TIMESTAMP},
+      loan_acctcode = #{loanAcctcode,jdbcType=VARCHAR},
+      cust_fee_in_status = #{custFeeInStatus,jdbcType=INTEGER},
+      cust_fee_in_sumamount = #{custFeeInSumamount,jdbcType=DECIMAL},
+      cust_fee_in_time = #{custFeeInTime,jdbcType=TIMESTAMP},
+      mer_fee_in_status = #{merFeeInStatus,jdbcType=INTEGER},
+      mer_fee_in_sumamount = #{merFeeInSumamount,jdbcType=DECIMAL},
+      mer_fee_in_time = #{merFeeInTime,jdbcType=TIMESTAMP},
+      generation = #{generation,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

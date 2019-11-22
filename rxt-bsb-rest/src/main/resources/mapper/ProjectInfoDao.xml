@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.ProjectInfoDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.ProjectInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="merchant_info_id" jdbcType="INTEGER" property="merchantInfoId" />
+    <result column="mer_code" jdbcType="VARCHAR" property="merCode" />
+    <result column="proj_no" jdbcType="VARCHAR" property="projNo" />
+    <result column="proj_name" jdbcType="VARCHAR" property="projName" />
+    <result column="proj_amt" jdbcType="VARCHAR" property="projAmt" />
+    <result column="proj_amt_deadline" jdbcType="INTEGER" property="projAmtDeadline" />
+    <result column="proj_amt_effdate" jdbcType="VARCHAR" property="projAmtEffdate" />
+    <result column="proj_amt_duedate" jdbcType="VARCHAR" property="projAmtDuedate" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, merchant_info_id, mer_code, proj_no, proj_name, proj_amt, proj_amt_deadline, 
+    proj_amt_effdate, proj_amt_duedate, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_project_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_project_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.ProjectInfo">
+    insert into t_project_info (id, merchant_info_id, mer_code, 
+      proj_no, proj_name, proj_amt, 
+      proj_amt_deadline, proj_amt_effdate, proj_amt_duedate, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{merchantInfoId,jdbcType=INTEGER}, #{merCode,jdbcType=VARCHAR}, 
+      #{projNo,jdbcType=VARCHAR}, #{projName,jdbcType=VARCHAR}, #{projAmt,jdbcType=VARCHAR}, 
+      #{projAmtDeadline,jdbcType=INTEGER}, #{projAmtEffdate,jdbcType=VARCHAR}, #{projAmtDuedate,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.ProjectInfo">
+    insert into t_project_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="merchantInfoId != null">
+        merchant_info_id,
+      </if>
+      <if test="merCode != null">
+        mer_code,
+      </if>
+      <if test="projNo != null">
+        proj_no,
+      </if>
+      <if test="projName != null">
+        proj_name,
+      </if>
+      <if test="projAmt != null">
+        proj_amt,
+      </if>
+      <if test="projAmtDeadline != null">
+        proj_amt_deadline,
+      </if>
+      <if test="projAmtEffdate != null">
+        proj_amt_effdate,
+      </if>
+      <if test="projAmtDuedate != null">
+        proj_amt_duedate,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantInfoId != null">
+        #{merchantInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="merCode != null">
+        #{merCode,jdbcType=VARCHAR},
+      </if>
+      <if test="projNo != null">
+        #{projNo,jdbcType=VARCHAR},
+      </if>
+      <if test="projName != null">
+        #{projName,jdbcType=VARCHAR},
+      </if>
+      <if test="projAmt != null">
+        #{projAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="projAmtDeadline != null">
+        #{projAmtDeadline,jdbcType=INTEGER},
+      </if>
+      <if test="projAmtEffdate != null">
+        #{projAmtEffdate,jdbcType=VARCHAR},
+      </if>
+      <if test="projAmtDuedate != null">
+        #{projAmtDuedate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.ProjectInfo">
+    update t_project_info
+    <set>
+      <if test="merchantInfoId != null">
+        merchant_info_id = #{merchantInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="merCode != null">
+        mer_code = #{merCode,jdbcType=VARCHAR},
+      </if>
+      <if test="projNo != null">
+        proj_no = #{projNo,jdbcType=VARCHAR},
+      </if>
+      <if test="projName != null">
+        proj_name = #{projName,jdbcType=VARCHAR},
+      </if>
+      <if test="projAmt != null">
+        proj_amt = #{projAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="projAmtDeadline != null">
+        proj_amt_deadline = #{projAmtDeadline,jdbcType=INTEGER},
+      </if>
+      <if test="projAmtEffdate != null">
+        proj_amt_effdate = #{projAmtEffdate,jdbcType=VARCHAR},
+      </if>
+      <if test="projAmtDuedate != null">
+        proj_amt_duedate = #{projAmtDuedate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.ProjectInfo">
+    update t_project_info
+    set merchant_info_id = #{merchantInfoId,jdbcType=INTEGER},
+      mer_code = #{merCode,jdbcType=VARCHAR},
+      proj_no = #{projNo,jdbcType=VARCHAR},
+      proj_name = #{projName,jdbcType=VARCHAR},
+      proj_amt = #{projAmt,jdbcType=VARCHAR},
+      proj_amt_deadline = #{projAmtDeadline,jdbcType=INTEGER},
+      proj_amt_effdate = #{projAmtEffdate,jdbcType=VARCHAR},
+      proj_amt_duedate = #{projAmtDuedate,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

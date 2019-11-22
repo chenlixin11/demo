@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.LoanRepayInfoDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.LoanRepayInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="loan_info_id" jdbcType="INTEGER" property="loanInfoId" />
+    <result column="loan_apply_id" jdbcType="INTEGER" property="loanApplyId" />
+    <result column="agent_info_id" jdbcType="INTEGER" property="agentInfoId" />
+    <result column="loan_apply_no" jdbcType="VARCHAR" property="loanApplyNo" />
+    <result column="un_repay_prin" jdbcType="VARCHAR" property="unRepayPrin" />
+    <result column="loan_amt" jdbcType="VARCHAR" property="loanAmt" />
+    <result column="repay_type" jdbcType="VARCHAR" property="repayType" />
+    <result column="repay_asset_no" jdbcType="VARCHAR" property="repayAssetNo" />
+    <result column="repay_amt" jdbcType="VARCHAR" property="repayAmt" />
+    <result column="repay_prin_amt" jdbcType="VARCHAR" property="repayPrinAmt" />
+    <result column="repay_accrual" jdbcType="VARCHAR" property="repayAccrual" />
+    <result column="total_reapy_amount" jdbcType="VARCHAR" property="totalReapyAmount" />
+    <result column="amount" jdbcType="VARCHAR" property="amount" />
+    <result column="current_interest" jdbcType="VARCHAR" property="currentInterest" />
+    <result column="overdue_amt" jdbcType="VARCHAR" property="overdueAmt" />
+    <result column="overdue_interest" jdbcType="VARCHAR" property="overdueInterest" />
+    <result column="overdue_total" jdbcType="VARCHAR" property="overdueTotal" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, loan_info_id, loan_apply_id, agent_info_id, loan_apply_no, un_repay_prin, loan_amt, 
+    repay_type, repay_asset_no, repay_amt, repay_prin_amt, repay_accrual, total_reapy_amount, 
+    amount, current_interest, overdue_amt, overdue_interest, overdue_total, status, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_loan_repay_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_loan_repay_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.LoanRepayInfo">
+    insert into t_loan_repay_info (id, loan_info_id, loan_apply_id, 
+      agent_info_id, loan_apply_no, un_repay_prin, 
+      loan_amt, repay_type, repay_asset_no, 
+      repay_amt, repay_prin_amt, repay_accrual, 
+      total_reapy_amount, amount, current_interest, 
+      overdue_amt, overdue_interest, overdue_total, 
+      status, create_time)
+    values (#{id,jdbcType=INTEGER}, #{loanInfoId,jdbcType=INTEGER}, #{loanApplyId,jdbcType=INTEGER}, 
+      #{agentInfoId,jdbcType=INTEGER}, #{loanApplyNo,jdbcType=VARCHAR}, #{unRepayPrin,jdbcType=VARCHAR}, 
+      #{loanAmt,jdbcType=VARCHAR}, #{repayType,jdbcType=VARCHAR}, #{repayAssetNo,jdbcType=VARCHAR}, 
+      #{repayAmt,jdbcType=VARCHAR}, #{repayPrinAmt,jdbcType=VARCHAR}, #{repayAccrual,jdbcType=VARCHAR}, 
+      #{totalReapyAmount,jdbcType=VARCHAR}, #{amount,jdbcType=VARCHAR}, #{currentInterest,jdbcType=VARCHAR}, 
+      #{overdueAmt,jdbcType=VARCHAR}, #{overdueInterest,jdbcType=VARCHAR}, #{overdueTotal,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.LoanRepayInfo">
+    insert into t_loan_repay_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="loanInfoId != null">
+        loan_info_id,
+      </if>
+      <if test="loanApplyId != null">
+        loan_apply_id,
+      </if>
+      <if test="agentInfoId != null">
+        agent_info_id,
+      </if>
+      <if test="loanApplyNo != null">
+        loan_apply_no,
+      </if>
+      <if test="unRepayPrin != null">
+        un_repay_prin,
+      </if>
+      <if test="loanAmt != null">
+        loan_amt,
+      </if>
+      <if test="repayType != null">
+        repay_type,
+      </if>
+      <if test="repayAssetNo != null">
+        repay_asset_no,
+      </if>
+      <if test="repayAmt != null">
+        repay_amt,
+      </if>
+      <if test="repayPrinAmt != null">
+        repay_prin_amt,
+      </if>
+      <if test="repayAccrual != null">
+        repay_accrual,
+      </if>
+      <if test="totalReapyAmount != null">
+        total_reapy_amount,
+      </if>
+      <if test="amount != null">
+        amount,
+      </if>
+      <if test="currentInterest != null">
+        current_interest,
+      </if>
+      <if test="overdueAmt != null">
+        overdue_amt,
+      </if>
+      <if test="overdueInterest != null">
+        overdue_interest,
+      </if>
+      <if test="overdueTotal != null">
+        overdue_total,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loanInfoId != null">
+        #{loanInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="loanApplyId != null">
+        #{loanApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="agentInfoId != null">
+        #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="loanApplyNo != null">
+        #{loanApplyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="unRepayPrin != null">
+        #{unRepayPrin,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmt != null">
+        #{loanAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="repayType != null">
+        #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAssetNo != null">
+        #{repayAssetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAmt != null">
+        #{repayAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="repayPrinAmt != null">
+        #{repayPrinAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAccrual != null">
+        #{repayAccrual,jdbcType=VARCHAR},
+      </if>
+      <if test="totalReapyAmount != null">
+        #{totalReapyAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="currentInterest != null">
+        #{currentInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueAmt != null">
+        #{overdueAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueInterest != null">
+        #{overdueInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueTotal != null">
+        #{overdueTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.LoanRepayInfo">
+    update t_loan_repay_info
+    <set>
+      <if test="loanInfoId != null">
+        loan_info_id = #{loanInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="loanApplyId != null">
+        loan_apply_id = #{loanApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="agentInfoId != null">
+        agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="loanApplyNo != null">
+        loan_apply_no = #{loanApplyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="unRepayPrin != null">
+        un_repay_prin = #{unRepayPrin,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmt != null">
+        loan_amt = #{loanAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="repayType != null">
+        repay_type = #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAssetNo != null">
+        repay_asset_no = #{repayAssetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAmt != null">
+        repay_amt = #{repayAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="repayPrinAmt != null">
+        repay_prin_amt = #{repayPrinAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="repayAccrual != null">
+        repay_accrual = #{repayAccrual,jdbcType=VARCHAR},
+      </if>
+      <if test="totalReapyAmount != null">
+        total_reapy_amount = #{totalReapyAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null">
+        amount = #{amount,jdbcType=VARCHAR},
+      </if>
+      <if test="currentInterest != null">
+        current_interest = #{currentInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueAmt != null">
+        overdue_amt = #{overdueAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueInterest != null">
+        overdue_interest = #{overdueInterest,jdbcType=VARCHAR},
+      </if>
+      <if test="overdueTotal != null">
+        overdue_total = #{overdueTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.LoanRepayInfo">
+    update t_loan_repay_info
+    set loan_info_id = #{loanInfoId,jdbcType=INTEGER},
+      loan_apply_id = #{loanApplyId,jdbcType=INTEGER},
+      agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      loan_apply_no = #{loanApplyNo,jdbcType=VARCHAR},
+      un_repay_prin = #{unRepayPrin,jdbcType=VARCHAR},
+      loan_amt = #{loanAmt,jdbcType=VARCHAR},
+      repay_type = #{repayType,jdbcType=VARCHAR},
+      repay_asset_no = #{repayAssetNo,jdbcType=VARCHAR},
+      repay_amt = #{repayAmt,jdbcType=VARCHAR},
+      repay_prin_amt = #{repayPrinAmt,jdbcType=VARCHAR},
+      repay_accrual = #{repayAccrual,jdbcType=VARCHAR},
+      total_reapy_amount = #{totalReapyAmount,jdbcType=VARCHAR},
+      amount = #{amount,jdbcType=VARCHAR},
+      current_interest = #{currentInterest,jdbcType=VARCHAR},
+      overdue_amt = #{overdueAmt,jdbcType=VARCHAR},
+      overdue_interest = #{overdueInterest,jdbcType=VARCHAR},
+      overdue_total = #{overdueTotal,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

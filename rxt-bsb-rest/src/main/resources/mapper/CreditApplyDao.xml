@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.CreditApplyDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.CreditApply">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="agent_info_id" jdbcType="INTEGER" property="agentInfoId" />
+    <result column="cust_no" jdbcType="VARCHAR" property="custNo" />
+    <result column="apply_no" jdbcType="VARCHAR" property="applyNo" />
+    <result column="credit_amt" jdbcType="VARCHAR" property="creditAmt" />
+    <result column="product" jdbcType="VARCHAR" property="product" />
+    <result column="repay_type" jdbcType="VARCHAR" property="repayType" />
+    <result column="apply_term" jdbcType="INTEGER" property="applyTerm" />
+    <result column="repay_source" jdbcType="VARCHAR" property="repaySource" />
+    <result column="pay_day" jdbcType="INTEGER" property="payDay" />
+    <result column="pay_distance" jdbcType="INTEGER" property="payDistance" />
+    <result column="assure_means_main" jdbcType="VARCHAR" property="assureMeansMain" />
+    <result column="pay_type" jdbcType="VARCHAR" property="payType" />
+    <result column="loan_use" jdbcType="VARCHAR" property="loanUse" />
+    <result column="apply_channel" jdbcType="VARCHAR" property="applyChannel" />
+    <result column="is_circle" jdbcType="VARCHAR" property="isCircle" />
+    <result column="is_multi_loan" jdbcType="VARCHAR" property="isMultiLoan" />
+    <result column="finance_rate" jdbcType="VARCHAR" property="financeRate" />
+    <result column="loan_no" jdbcType="VARCHAR" property="loanNo" />
+    <result column="contract_no" jdbcType="VARCHAR" property="contractNo" />
+    <result column="contract_path" jdbcType="VARCHAR" property="contractPath" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="fail_reason" jdbcType="VARCHAR" property="failReason" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="rxt.bsb.rest.po.CreditApply">
+    <result column="audit_datas" jdbcType="LONGVARCHAR" property="auditDatas" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, agent_info_id, cust_no, apply_no, credit_amt, product, repay_type, apply_term, 
+    repay_source, pay_day, pay_distance, assure_means_main, pay_type, loan_use, apply_channel, 
+    is_circle, is_multi_loan, finance_rate, loan_no, contract_no, contract_path, status, 
+    fail_reason, create_time
+  </sql>
+  <sql id="Blob_Column_List">
+    audit_datas
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_credit_apply
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_credit_apply
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.CreditApply">
+    insert into t_credit_apply (id, agent_info_id, cust_no, 
+      apply_no, credit_amt, product, 
+      repay_type, apply_term, repay_source, 
+      pay_day, pay_distance, assure_means_main, 
+      pay_type, loan_use, apply_channel, 
+      is_circle, is_multi_loan, finance_rate, 
+      loan_no, contract_no, contract_path, 
+      status, fail_reason, create_time, 
+      audit_datas)
+    values (#{id,jdbcType=INTEGER}, #{agentInfoId,jdbcType=INTEGER}, #{custNo,jdbcType=VARCHAR}, 
+      #{applyNo,jdbcType=VARCHAR}, #{creditAmt,jdbcType=VARCHAR}, #{product,jdbcType=VARCHAR}, 
+      #{repayType,jdbcType=VARCHAR}, #{applyTerm,jdbcType=INTEGER}, #{repaySource,jdbcType=VARCHAR}, 
+      #{payDay,jdbcType=INTEGER}, #{payDistance,jdbcType=INTEGER}, #{assureMeansMain,jdbcType=VARCHAR}, 
+      #{payType,jdbcType=VARCHAR}, #{loanUse,jdbcType=VARCHAR}, #{applyChannel,jdbcType=VARCHAR}, 
+      #{isCircle,jdbcType=VARCHAR}, #{isMultiLoan,jdbcType=VARCHAR}, #{financeRate,jdbcType=VARCHAR}, 
+      #{loanNo,jdbcType=VARCHAR}, #{contractNo,jdbcType=VARCHAR}, #{contractPath,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{failReason,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{auditDatas,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.CreditApply">
+    insert into t_credit_apply
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="agentInfoId != null">
+        agent_info_id,
+      </if>
+      <if test="custNo != null">
+        cust_no,
+      </if>
+      <if test="applyNo != null">
+        apply_no,
+      </if>
+      <if test="creditAmt != null">
+        credit_amt,
+      </if>
+      <if test="product != null">
+        product,
+      </if>
+      <if test="repayType != null">
+        repay_type,
+      </if>
+      <if test="applyTerm != null">
+        apply_term,
+      </if>
+      <if test="repaySource != null">
+        repay_source,
+      </if>
+      <if test="payDay != null">
+        pay_day,
+      </if>
+      <if test="payDistance != null">
+        pay_distance,
+      </if>
+      <if test="assureMeansMain != null">
+        assure_means_main,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="loanUse != null">
+        loan_use,
+      </if>
+      <if test="applyChannel != null">
+        apply_channel,
+      </if>
+      <if test="isCircle != null">
+        is_circle,
+      </if>
+      <if test="isMultiLoan != null">
+        is_multi_loan,
+      </if>
+      <if test="financeRate != null">
+        finance_rate,
+      </if>
+      <if test="loanNo != null">
+        loan_no,
+      </if>
+      <if test="contractNo != null">
+        contract_no,
+      </if>
+      <if test="contractPath != null">
+        contract_path,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="failReason != null">
+        fail_reason,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="auditDatas != null">
+        audit_datas,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentInfoId != null">
+        #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="custNo != null">
+        #{custNo,jdbcType=VARCHAR},
+      </if>
+      <if test="applyNo != null">
+        #{applyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAmt != null">
+        #{creditAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="product != null">
+        #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="repayType != null">
+        #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTerm != null">
+        #{applyTerm,jdbcType=INTEGER},
+      </if>
+      <if test="repaySource != null">
+        #{repaySource,jdbcType=VARCHAR},
+      </if>
+      <if test="payDay != null">
+        #{payDay,jdbcType=INTEGER},
+      </if>
+      <if test="payDistance != null">
+        #{payDistance,jdbcType=INTEGER},
+      </if>
+      <if test="assureMeansMain != null">
+        #{assureMeansMain,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="loanUse != null">
+        #{loanUse,jdbcType=VARCHAR},
+      </if>
+      <if test="applyChannel != null">
+        #{applyChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="isCircle != null">
+        #{isCircle,jdbcType=VARCHAR},
+      </if>
+      <if test="isMultiLoan != null">
+        #{isMultiLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="financeRate != null">
+        #{financeRate,jdbcType=VARCHAR},
+      </if>
+      <if test="loanNo != null">
+        #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNo != null">
+        #{contractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPath != null">
+        #{contractPath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="failReason != null">
+        #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditDatas != null">
+        #{auditDatas,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.CreditApply">
+    update t_credit_apply
+    <set>
+      <if test="agentInfoId != null">
+        agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="custNo != null">
+        cust_no = #{custNo,jdbcType=VARCHAR},
+      </if>
+      <if test="applyNo != null">
+        apply_no = #{applyNo,jdbcType=VARCHAR},
+      </if>
+      <if test="creditAmt != null">
+        credit_amt = #{creditAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="product != null">
+        product = #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="repayType != null">
+        repay_type = #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTerm != null">
+        apply_term = #{applyTerm,jdbcType=INTEGER},
+      </if>
+      <if test="repaySource != null">
+        repay_source = #{repaySource,jdbcType=VARCHAR},
+      </if>
+      <if test="payDay != null">
+        pay_day = #{payDay,jdbcType=INTEGER},
+      </if>
+      <if test="payDistance != null">
+        pay_distance = #{payDistance,jdbcType=INTEGER},
+      </if>
+      <if test="assureMeansMain != null">
+        assure_means_main = #{assureMeansMain,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="loanUse != null">
+        loan_use = #{loanUse,jdbcType=VARCHAR},
+      </if>
+      <if test="applyChannel != null">
+        apply_channel = #{applyChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="isCircle != null">
+        is_circle = #{isCircle,jdbcType=VARCHAR},
+      </if>
+      <if test="isMultiLoan != null">
+        is_multi_loan = #{isMultiLoan,jdbcType=VARCHAR},
+      </if>
+      <if test="financeRate != null">
+        finance_rate = #{financeRate,jdbcType=VARCHAR},
+      </if>
+      <if test="loanNo != null">
+        loan_no = #{loanNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contractNo != null">
+        contract_no = #{contractNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPath != null">
+        contract_path = #{contractPath,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="failReason != null">
+        fail_reason = #{failReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditDatas != null">
+        audit_datas = #{auditDatas,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="rxt.bsb.rest.po.CreditApply">
+    update t_credit_apply
+    set agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      cust_no = #{custNo,jdbcType=VARCHAR},
+      apply_no = #{applyNo,jdbcType=VARCHAR},
+      credit_amt = #{creditAmt,jdbcType=VARCHAR},
+      product = #{product,jdbcType=VARCHAR},
+      repay_type = #{repayType,jdbcType=VARCHAR},
+      apply_term = #{applyTerm,jdbcType=INTEGER},
+      repay_source = #{repaySource,jdbcType=VARCHAR},
+      pay_day = #{payDay,jdbcType=INTEGER},
+      pay_distance = #{payDistance,jdbcType=INTEGER},
+      assure_means_main = #{assureMeansMain,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      loan_use = #{loanUse,jdbcType=VARCHAR},
+      apply_channel = #{applyChannel,jdbcType=VARCHAR},
+      is_circle = #{isCircle,jdbcType=VARCHAR},
+      is_multi_loan = #{isMultiLoan,jdbcType=VARCHAR},
+      finance_rate = #{financeRate,jdbcType=VARCHAR},
+      loan_no = #{loanNo,jdbcType=VARCHAR},
+      contract_no = #{contractNo,jdbcType=VARCHAR},
+      contract_path = #{contractPath,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      fail_reason = #{failReason,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      audit_datas = #{auditDatas,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.CreditApply">
+    update t_credit_apply
+    set agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      cust_no = #{custNo,jdbcType=VARCHAR},
+      apply_no = #{applyNo,jdbcType=VARCHAR},
+      credit_amt = #{creditAmt,jdbcType=VARCHAR},
+      product = #{product,jdbcType=VARCHAR},
+      repay_type = #{repayType,jdbcType=VARCHAR},
+      apply_term = #{applyTerm,jdbcType=INTEGER},
+      repay_source = #{repaySource,jdbcType=VARCHAR},
+      pay_day = #{payDay,jdbcType=INTEGER},
+      pay_distance = #{payDistance,jdbcType=INTEGER},
+      assure_means_main = #{assureMeansMain,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      loan_use = #{loanUse,jdbcType=VARCHAR},
+      apply_channel = #{applyChannel,jdbcType=VARCHAR},
+      is_circle = #{isCircle,jdbcType=VARCHAR},
+      is_multi_loan = #{isMultiLoan,jdbcType=VARCHAR},
+      finance_rate = #{financeRate,jdbcType=VARCHAR},
+      loan_no = #{loanNo,jdbcType=VARCHAR},
+      contract_no = #{contractNo,jdbcType=VARCHAR},
+      contract_path = #{contractPath,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      fail_reason = #{failReason,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="queryCreditApplyPage" resultType="rxt.bsb.rest.vo.showVO.ShowCreditApplyVO" >
+
+    select  t1.id,t.cust_name,t.cust_no,t1.apply_no,t1.status,t1.credit_amt,t1.finance_Rate,t1.create_Time,t1.pay_type,t1.product
+    from t_agent_info t,t_credit_apply t1
+    where t.id = t1.agent_info_id
+    <if  test="custName != null and custName != ''">
+      and  t.cust_name like CONCAT('%',#{custName,jdbcType=VARCHAR}, '%' )
+    </if>
+    <if  test="custNo != null and custNo != ''"  >
+      and  t.cust_no = #{custNo,jdbcType=VARCHAR}
+    </if>
+    <if  test="creditApplyNo != null and creditApplyNo != ''"  >
+      and  t1.apply_no = #{creditApplyNo,jdbcType=VARCHAR}
+    </if>
+    order by t1.create_time desc
+  </select>
+</mapper>

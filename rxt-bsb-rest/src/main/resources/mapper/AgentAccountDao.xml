@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.AgentAccountDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.AgentAccount">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="agent_info_id" jdbcType="INTEGER" property="agentInfoId" />
+    <result column="cust_no" jdbcType="VARCHAR" property="custNo" />
+    <result column="cust_type" jdbcType="VARCHAR" property="custType" />
+    <result column="cert_type" jdbcType="VARCHAR" property="certType" />
+    <result column="cert_no" jdbcType="VARCHAR" property="certNo" />
+    <result column="cert_valid_date" jdbcType="VARCHAR" property="certValidDate" />
+    <result column="cert_start_date" jdbcType="VARCHAR" property="certStartDate" />
+    <result column="cert_length_date" jdbcType="VARCHAR" property="certLengthDate" />
+    <result column="subacct_no" jdbcType="VARCHAR" property="subacctNo" />
+    <result column="subacct_no_status" jdbcType="VARCHAR" property="subacctNoStatus" />
+    <result column="repay_subacct_no" jdbcType="VARCHAR" property="repaySubacctNo" />
+    <result column="repay_subacct_no_status" jdbcType="VARCHAR" property="repaySubacctNoStatus" />
+    <result column="legal_real_name" jdbcType="VARCHAR" property="legalRealName" />
+    <result column="legal_cert_type" jdbcType="VARCHAR" property="legalCertType" />
+    <result column="legal_cert_no" jdbcType="VARCHAR" property="legalCertNo" />
+    <result column="agent_name" jdbcType="VARCHAR" property="agentName" />
+    <result column="agent_cert_type" jdbcType="VARCHAR" property="agentCertType" />
+    <result column="agent_cert_no" jdbcType="VARCHAR" property="agentCertNo" />
+    <result column="agent_mobile_no" jdbcType="VARCHAR" property="agentMobileNo" />
+    <result column="ukey_bind_status" jdbcType="VARCHAR" property="ukeyBindStatus" />
+    <result column="open_acct_time" jdbcType="TIMESTAMP" property="openAcctTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="open_acct_step" jdbcType="VARCHAR" property="openAcctStep" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, agent_info_id, cust_no, cust_type, cert_type, cert_no, cert_valid_date, cert_start_date, 
+    cert_length_date, subacct_no, subacct_no_status, repay_subacct_no, repay_subacct_no_status, 
+    legal_real_name, legal_cert_type, legal_cert_no, agent_name, agent_cert_type, agent_cert_no, 
+    agent_mobile_no, ukey_bind_status, open_acct_time, create_time,open_acct_step
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_agent_account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_agent_account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.AgentAccount">
+    insert into t_agent_account (id, agent_info_id, cust_no, 
+      cust_type, cert_type, cert_no, 
+      cert_valid_date, cert_start_date, cert_length_date, 
+      subacct_no, subacct_no_status, repay_subacct_no, 
+      repay_subacct_no_status, legal_real_name, legal_cert_type, 
+      legal_cert_no, agent_name, agent_cert_type, 
+      agent_cert_no, agent_mobile_no, ukey_bind_status, 
+      open_acct_time, create_time,open_acct_step
+     )
+    values (#{id,jdbcType=INTEGER}, #{agentInfoId,jdbcType=INTEGER}, #{custNo,jdbcType=VARCHAR}, 
+      #{custType,jdbcType=VARCHAR}, #{certType,jdbcType=VARCHAR}, #{certNo,jdbcType=VARCHAR}, 
+      #{certValidDate,jdbcType=VARCHAR}, #{certStartDate,jdbcType=VARCHAR}, #{certLengthDate,jdbcType=VARCHAR},
+      #{subacctNo,jdbcType=VARCHAR}, #{subacctNoStatus,jdbcType=VARCHAR}, #{repaySubacctNo,jdbcType=VARCHAR}, 
+      #{repaySubacctNoStatus,jdbcType=VARCHAR}, #{legalRealName,jdbcType=VARCHAR}, #{legalCertType,jdbcType=VARCHAR}, 
+      #{legalCertNo,jdbcType=VARCHAR}, #{agentName,jdbcType=VARCHAR}, #{agentCertType,jdbcType=VARCHAR}, 
+      #{agentCertNo,jdbcType=VARCHAR}, #{agentMobileNo,jdbcType=VARCHAR}, #{ukeyBindStatus,jdbcType=VARCHAR}, 
+      #{openAcctTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP},#{openAcctStep,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.AgentAccount">
+    insert into t_agent_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="agentInfoId != null">
+        agent_info_id,
+      </if>
+      <if test="custNo != null">
+        cust_no,
+      </if>
+      <if test="custType != null">
+        cust_type,
+      </if>
+      <if test="certType != null">
+        cert_type,
+      </if>
+      <if test="certNo != null">
+        cert_no,
+      </if>
+      <if test="certValidDate != null">
+        cert_valid_date,
+      </if>
+      <if test="certStartDate != null">
+        cert_start_date,
+      </if>
+      <if test="certLengthDate != null">
+        cert_length_date,
+      </if>
+      <if test="subacctNo != null">
+        subacct_no,
+      </if>
+      <if test="subacctNoStatus != null">
+        subacct_no_status,
+      </if>
+      <if test="repaySubacctNo != null">
+        repay_subacct_no,
+      </if>
+      <if test="repaySubacctNoStatus != null">
+        repay_subacct_no_status,
+      </if>
+      <if test="legalRealName != null">
+        legal_real_name,
+      </if>
+      <if test="legalCertType != null">
+        legal_cert_type,
+      </if>
+      <if test="legalCertNo != null">
+        legal_cert_no,
+      </if>
+      <if test="agentName != null">
+        agent_name,
+      </if>
+      <if test="agentCertType != null">
+        agent_cert_type,
+      </if>
+      <if test="agentCertNo != null">
+        agent_cert_no,
+      </if>
+      <if test="agentMobileNo != null">
+        agent_mobile_no,
+      </if>
+      <if test="ukeyBindStatus != null">
+        ukey_bind_status,
+      </if>
+      <if test="openAcctTime != null">
+        open_acct_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="openAcctStep != null">
+        open_acct_step,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentInfoId != null">
+        #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="custNo != null">
+        #{custNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null">
+        #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null">
+        #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null">
+        #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="certValidDate != null">
+        #{certValidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="certStartDate != null">
+        #{certStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="certLengthDate != null">
+        #{certLengthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="subacctNo != null">
+        #{subacctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subacctNoStatus != null">
+        #{subacctNoStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="repaySubacctNo != null">
+        #{repaySubacctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="repaySubacctNoStatus != null">
+        #{repaySubacctNoStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRealName != null">
+        #{legalRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertType != null">
+        #{legalCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertNo != null">
+        #{legalCertNo,jdbcType=VARCHAR},
+      </if>
+      <if test="agentName != null">
+        #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCertType != null">
+        #{agentCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCertNo != null">
+        #{agentCertNo,jdbcType=VARCHAR},
+      </if>
+      <if test="agentMobileNo != null">
+        #{agentMobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ukeyBindStatus != null">
+        #{ukeyBindStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="openAcctTime != null">
+        #{openAcctTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openAcctStep != null">
+        #{openAcctStep,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.AgentAccount">
+    update t_agent_account
+    <set>
+      <if test="agentInfoId != null">
+        agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="custNo != null">
+        cust_no = #{custNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null">
+        cust_type = #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null">
+        cert_type = #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null">
+        cert_no = #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="certValidDate != null">
+        cert_valid_date = #{certValidDate,jdbcType=VARCHAR},
+      </if>
+      <if test="certStartDate != null">
+        cert_start_date = #{certStartDate,jdbcType=VARCHAR},
+      </if>
+      <if test="certLengthDate != null">
+        cert_length_date = #{certLengthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="subacctNo != null">
+        subacct_no = #{subacctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="subacctNoStatus != null">
+        subacct_no_status = #{subacctNoStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="repaySubacctNo != null">
+        repay_subacct_no = #{repaySubacctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="repaySubacctNoStatus != null">
+        repay_subacct_no_status = #{repaySubacctNoStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRealName != null">
+        legal_real_name = #{legalRealName,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertType != null">
+        legal_cert_type = #{legalCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCertNo != null">
+        legal_cert_no = #{legalCertNo,jdbcType=VARCHAR},
+      </if>
+      <if test="agentName != null">
+        agent_name = #{agentName,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCertType != null">
+        agent_cert_type = #{agentCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="agentCertNo != null">
+        agent_cert_no = #{agentCertNo,jdbcType=VARCHAR},
+      </if>
+      <if test="agentMobileNo != null">
+        agent_mobile_no = #{agentMobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="ukeyBindStatus != null">
+        ukey_bind_status = #{ukeyBindStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="openAcctTime != null">
+        open_acct_time = #{openAcctTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openAcctStep != null">
+        open_acct_step = #{openAcctStep,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.AgentAccount">
+    update t_agent_account
+    set agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      cust_no = #{custNo,jdbcType=VARCHAR},
+      cust_type = #{custType,jdbcType=VARCHAR},
+      cert_type = #{certType,jdbcType=VARCHAR},
+      cert_no = #{certNo,jdbcType=VARCHAR},
+      cert_valid_date = #{certValidDate,jdbcType=VARCHAR},
+      cert_start_date = #{certStartDate,jdbcType=VARCHAR},
+      cert_length_date = #{certLengthDate,jdbcType=VARCHAR},
+      subacct_no = #{subacctNo,jdbcType=VARCHAR},
+      subacct_no_status = #{subacctNoStatus,jdbcType=VARCHAR},
+      repay_subacct_no = #{repaySubacctNo,jdbcType=VARCHAR},
+      repay_subacct_no_status = #{repaySubacctNoStatus,jdbcType=VARCHAR},
+      legal_real_name = #{legalRealName,jdbcType=VARCHAR},
+      legal_cert_type = #{legalCertType,jdbcType=VARCHAR},
+      legal_cert_no = #{legalCertNo,jdbcType=VARCHAR},
+      agent_name = #{agentName,jdbcType=VARCHAR},
+      agent_cert_type = #{agentCertType,jdbcType=VARCHAR},
+      agent_cert_no = #{agentCertNo,jdbcType=VARCHAR},
+      agent_mobile_no = #{agentMobileNo,jdbcType=VARCHAR},
+      ukey_bind_status = #{ukeyBindStatus,jdbcType=VARCHAR},
+      open_acct_time = #{openAcctTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      open_acct_step = #{openAcctStep,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryCustomOpenSubAcctInfo" >
+
+
+  </select>
+</mapper>

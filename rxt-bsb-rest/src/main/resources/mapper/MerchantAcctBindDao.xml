@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.MerchantAcctBindDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.MerchantAcctBind">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="merchant_acct_id" jdbcType="INTEGER" property="merchantAcctId" />
+    <result column="mer_code" jdbcType="VARCHAR" property="merCode" />
+    <result column="sub_acct_no" jdbcType="VARCHAR" property="subAcctNo" />
+    <result column="acct_no" jdbcType="VARCHAR" property="acctNo" />
+    <result column="acct_name" jdbcType="VARCHAR" property="acctName" />
+    <result column="bank_no" jdbcType="VARCHAR" property="bankNo" />
+    <result column="bank_name" jdbcType="VARCHAR" property="bankName" />
+    <result column="is_baoshang" jdbcType="VARCHAR" property="isBaoshang" />
+    <result column="bind_status" jdbcType="VARCHAR" property="bindStatus" />
+    <result column="is_certified" jdbcType="VARCHAR" property="isCertified" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, merchant_acct_id, mer_code, sub_acct_no, acct_no, acct_name, bank_no, bank_name, 
+    is_baoshang, bind_status, is_certified, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_merchant_acct_bind
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_merchant_acct_bind
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.MerchantAcctBind">
+    insert into t_merchant_acct_bind (id, merchant_acct_id, mer_code, 
+      sub_acct_no, acct_no, acct_name, 
+      bank_no, bank_name, is_baoshang, 
+      bind_status, is_certified, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{merchantAcctId,jdbcType=INTEGER}, #{merCode,jdbcType=VARCHAR}, 
+      #{subAcctNo,jdbcType=VARCHAR}, #{acctNo,jdbcType=VARCHAR}, #{acctName,jdbcType=VARCHAR}, 
+      #{bankNo,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{isBaoshang,jdbcType=VARCHAR}, 
+      #{bindStatus,jdbcType=VARCHAR}, #{isCertified,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.MerchantAcctBind">
+    insert into t_merchant_acct_bind
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="merchantAcctId != null">
+        merchant_acct_id,
+      </if>
+      <if test="merCode != null">
+        mer_code,
+      </if>
+      <if test="subAcctNo != null">
+        sub_acct_no,
+      </if>
+      <if test="acctNo != null">
+        acct_no,
+      </if>
+      <if test="acctName != null">
+        acct_name,
+      </if>
+      <if test="bankNo != null">
+        bank_no,
+      </if>
+      <if test="bankName != null">
+        bank_name,
+      </if>
+      <if test="isBaoshang != null">
+        is_baoshang,
+      </if>
+      <if test="bindStatus != null">
+        bind_status,
+      </if>
+      <if test="isCertified != null">
+        is_certified,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantAcctId != null">
+        #{merchantAcctId,jdbcType=INTEGER},
+      </if>
+      <if test="merCode != null">
+        #{merCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subAcctNo != null">
+        #{subAcctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null">
+        #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acctName != null">
+        #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNo != null">
+        #{bankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="isBaoshang != null">
+        #{isBaoshang,jdbcType=VARCHAR},
+      </if>
+      <if test="bindStatus != null">
+        #{bindStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isCertified != null">
+        #{isCertified,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.MerchantAcctBind">
+    update t_merchant_acct_bind
+    <set>
+      <if test="merchantAcctId != null">
+        merchant_acct_id = #{merchantAcctId,jdbcType=INTEGER},
+      </if>
+      <if test="merCode != null">
+        mer_code = #{merCode,jdbcType=VARCHAR},
+      </if>
+      <if test="subAcctNo != null">
+        sub_acct_no = #{subAcctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acctNo != null">
+        acct_no = #{acctNo,jdbcType=VARCHAR},
+      </if>
+      <if test="acctName != null">
+        acct_name = #{acctName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankNo != null">
+        bank_no = #{bankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null">
+        bank_name = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="isBaoshang != null">
+        is_baoshang = #{isBaoshang,jdbcType=VARCHAR},
+      </if>
+      <if test="bindStatus != null">
+        bind_status = #{bindStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isCertified != null">
+        is_certified = #{isCertified,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.MerchantAcctBind">
+    update t_merchant_acct_bind
+    set merchant_acct_id = #{merchantAcctId,jdbcType=INTEGER},
+      mer_code = #{merCode,jdbcType=VARCHAR},
+      sub_acct_no = #{subAcctNo,jdbcType=VARCHAR},
+      acct_no = #{acctNo,jdbcType=VARCHAR},
+      acct_name = #{acctName,jdbcType=VARCHAR},
+      bank_no = #{bankNo,jdbcType=VARCHAR},
+      bank_name = #{bankName,jdbcType=VARCHAR},
+      is_baoshang = #{isBaoshang,jdbcType=VARCHAR},
+      bind_status = #{bindStatus,jdbcType=VARCHAR},
+      is_certified = #{isCertified,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

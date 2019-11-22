@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.StatLoanBalanceDaysDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.StatLoanBalanceDays">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="agent_info_id" jdbcType="INTEGER" property="agentInfoId" />
+    <result column="loan_balance" jdbcType="VARCHAR" property="loanBalance" />
+    <result column="stat_time" jdbcType="TIMESTAMP" property="statTime" />
+    <result column="stat_date" jdbcType="DATE" property="statDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, agent_info_id, loan_balance, stat_time, stat_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_stat_loan_balance_days
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_stat_loan_balance_days
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.StatLoanBalanceDays">
+    insert into t_stat_loan_balance_days (id, agent_info_id, loan_balance, 
+      stat_time, stat_date)
+    values (#{id,jdbcType=INTEGER}, #{agentInfoId,jdbcType=INTEGER}, #{loanBalance,jdbcType=VARCHAR}, 
+      #{statTime,jdbcType=TIMESTAMP}, #{statDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.StatLoanBalanceDays">
+    insert into t_stat_loan_balance_days
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="agentInfoId != null">
+        agent_info_id,
+      </if>
+      <if test="loanBalance != null">
+        loan_balance,
+      </if>
+      <if test="statTime != null">
+        stat_time,
+      </if>
+      <if test="statDate != null">
+        stat_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentInfoId != null">
+        #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="loanBalance != null">
+        #{loanBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="statTime != null">
+        #{statTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statDate != null">
+        #{statDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.StatLoanBalanceDays">
+    update t_stat_loan_balance_days
+    <set>
+      <if test="agentInfoId != null">
+        agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="loanBalance != null">
+        loan_balance = #{loanBalance,jdbcType=VARCHAR},
+      </if>
+      <if test="statTime != null">
+        stat_time = #{statTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="statDate != null">
+        stat_date = #{statDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.StatLoanBalanceDays">
+    update t_stat_loan_balance_days
+    set agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      loan_balance = #{loanBalance,jdbcType=VARCHAR},
+      stat_time = #{statTime,jdbcType=TIMESTAMP},
+      stat_date = #{statDate,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

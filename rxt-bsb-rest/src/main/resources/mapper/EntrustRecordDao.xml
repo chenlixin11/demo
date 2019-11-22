@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.EntrustRecordDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.EntrustRecord">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="agent_info_id" jdbcType="INTEGER" property="agentInfoId" />
+    <result column="loan_apply_id" jdbcType="INTEGER" property="loanApplyId" />
+    <result column="entrust_account_id" jdbcType="INTEGER" property="entrustAccountId" />
+    <result column="entrust_amt" jdbcType="DECIMAL" property="entrustAmt" />
+    <result column="entrust_fee" jdbcType="DECIMAL" property="entrustFee" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, agent_info_id, loan_apply_id, entrust_account_id, entrust_amt, entrust_fee, remarks, 
+    create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_entrust_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_entrust_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.EntrustRecord">
+    insert into t_entrust_record (id, agent_info_id, loan_apply_id, 
+      entrust_account_id, entrust_amt, entrust_fee, 
+      remarks, create_time)
+    values (#{id,jdbcType=INTEGER}, #{agentInfoId,jdbcType=INTEGER}, #{loanApplyId,jdbcType=INTEGER}, 
+      #{entrustAccountId,jdbcType=INTEGER}, #{entrustAmt,jdbcType=DECIMAL}, #{entrustFee,jdbcType=DECIMAL}, 
+      #{remarks,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.EntrustRecord">
+    insert into t_entrust_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="agentInfoId != null">
+        agent_info_id,
+      </if>
+      <if test="loanApplyId != null">
+        loan_apply_id,
+      </if>
+      <if test="entrustAccountId != null">
+        entrust_account_id,
+      </if>
+      <if test="entrustAmt != null">
+        entrust_amt,
+      </if>
+      <if test="entrustFee != null">
+        entrust_fee,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentInfoId != null">
+        #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="loanApplyId != null">
+        #{loanApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="entrustAccountId != null">
+        #{entrustAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="entrustAmt != null">
+        #{entrustAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="entrustFee != null">
+        #{entrustFee,jdbcType=DECIMAL},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.EntrustRecord">
+    update t_entrust_record
+    <set>
+      <if test="agentInfoId != null">
+        agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="loanApplyId != null">
+        loan_apply_id = #{loanApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="entrustAccountId != null">
+        entrust_account_id = #{entrustAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="entrustAmt != null">
+        entrust_amt = #{entrustAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="entrustFee != null">
+        entrust_fee = #{entrustFee,jdbcType=DECIMAL},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.EntrustRecord">
+    update t_entrust_record
+    set agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      loan_apply_id = #{loanApplyId,jdbcType=INTEGER},
+      entrust_account_id = #{entrustAccountId,jdbcType=INTEGER},
+      entrust_amt = #{entrustAmt,jdbcType=DECIMAL},
+      entrust_fee = #{entrustFee,jdbcType=DECIMAL},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

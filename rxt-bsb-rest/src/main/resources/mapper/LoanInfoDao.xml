@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.LoanInfoDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.LoanInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="loan_apply_id" jdbcType="INTEGER" property="loanApplyId" />
+    <result column="agent_info_id" jdbcType="INTEGER" property="agentInfoId" />
+    <result column="debit_no" jdbcType="VARCHAR" property="debitNo" />
+    <result column="stat" jdbcType="VARCHAR" property="stat" />
+    <result column="loan_acct" jdbcType="VARCHAR" property="loanAcct" />
+    <result column="loan_amt" jdbcType="VARCHAR" property="loanAmt" />
+    <result column="loan_beg_date" jdbcType="VARCHAR" property="loanBegDate" />
+    <result column="loan_end_dte" jdbcType="VARCHAR" property="loanEndDte" />
+    <result column="due_day" jdbcType="VARCHAR" property="dueDay" />
+    <result column="ext_rate" jdbcType="VARCHAR" property="extRate" />
+    <result column="balance" jdbcType="VARCHAR" property="balance" />
+    <result column="repay_type" jdbcType="VARCHAR" property="repayType" />
+    <result column="total_repay_terms" jdbcType="VARCHAR" property="totalRepayTerms" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, loan_apply_id, agent_info_id, debit_no, stat, loan_acct, loan_amt, loan_beg_date, 
+    loan_end_dte, due_day, ext_rate, balance, repay_type, total_repay_terms, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_loan_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_loan_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.LoanInfo">
+    insert into t_loan_info (id, loan_apply_id, agent_info_id, 
+      debit_no, stat, loan_acct, 
+      loan_amt, loan_beg_date, loan_end_dte, 
+      due_day, ext_rate, balance, 
+      repay_type, total_repay_terms, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{loanApplyId,jdbcType=INTEGER}, #{agentInfoId,jdbcType=INTEGER}, 
+      #{debitNo,jdbcType=VARCHAR}, #{stat,jdbcType=VARCHAR}, #{loanAcct,jdbcType=VARCHAR}, 
+      #{loanAmt,jdbcType=VARCHAR}, #{loanBegDate,jdbcType=VARCHAR}, #{loanEndDte,jdbcType=VARCHAR}, 
+      #{dueDay,jdbcType=VARCHAR}, #{extRate,jdbcType=VARCHAR}, #{balance,jdbcType=VARCHAR}, 
+      #{repayType,jdbcType=VARCHAR}, #{totalRepayTerms,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.LoanInfo">
+    insert into t_loan_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="loanApplyId != null">
+        loan_apply_id,
+      </if>
+      <if test="agentInfoId != null">
+        agent_info_id,
+      </if>
+      <if test="debitNo != null">
+        debit_no,
+      </if>
+      <if test="stat != null">
+        stat,
+      </if>
+      <if test="loanAcct != null">
+        loan_acct,
+      </if>
+      <if test="loanAmt != null">
+        loan_amt,
+      </if>
+      <if test="loanBegDate != null">
+        loan_beg_date,
+      </if>
+      <if test="loanEndDte != null">
+        loan_end_dte,
+      </if>
+      <if test="dueDay != null">
+        due_day,
+      </if>
+      <if test="extRate != null">
+        ext_rate,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="repayType != null">
+        repay_type,
+      </if>
+      <if test="totalRepayTerms != null">
+        total_repay_terms,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loanApplyId != null">
+        #{loanApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="agentInfoId != null">
+        #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="debitNo != null">
+        #{debitNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stat != null">
+        #{stat,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAcct != null">
+        #{loanAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmt != null">
+        #{loanAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="loanBegDate != null">
+        #{loanBegDate,jdbcType=VARCHAR},
+      </if>
+      <if test="loanEndDte != null">
+        #{loanEndDte,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDay != null">
+        #{dueDay,jdbcType=VARCHAR},
+      </if>
+      <if test="extRate != null">
+        #{extRate,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=VARCHAR},
+      </if>
+      <if test="repayType != null">
+        #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalRepayTerms != null">
+        #{totalRepayTerms,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.LoanInfo">
+    update t_loan_info
+    <set>
+      <if test="loanApplyId != null">
+        loan_apply_id = #{loanApplyId,jdbcType=INTEGER},
+      </if>
+      <if test="agentInfoId != null">
+        agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="debitNo != null">
+        debit_no = #{debitNo,jdbcType=VARCHAR},
+      </if>
+      <if test="stat != null">
+        stat = #{stat,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAcct != null">
+        loan_acct = #{loanAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="loanAmt != null">
+        loan_amt = #{loanAmt,jdbcType=VARCHAR},
+      </if>
+      <if test="loanBegDate != null">
+        loan_beg_date = #{loanBegDate,jdbcType=VARCHAR},
+      </if>
+      <if test="loanEndDte != null">
+        loan_end_dte = #{loanEndDte,jdbcType=VARCHAR},
+      </if>
+      <if test="dueDay != null">
+        due_day = #{dueDay,jdbcType=VARCHAR},
+      </if>
+      <if test="extRate != null">
+        ext_rate = #{extRate,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=VARCHAR},
+      </if>
+      <if test="repayType != null">
+        repay_type = #{repayType,jdbcType=VARCHAR},
+      </if>
+      <if test="totalRepayTerms != null">
+        total_repay_terms = #{totalRepayTerms,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.LoanInfo">
+    update t_loan_info
+    set loan_apply_id = #{loanApplyId,jdbcType=INTEGER},
+      agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      debit_no = #{debitNo,jdbcType=VARCHAR},
+      stat = #{stat,jdbcType=VARCHAR},
+      loan_acct = #{loanAcct,jdbcType=VARCHAR},
+      loan_amt = #{loanAmt,jdbcType=VARCHAR},
+      loan_beg_date = #{loanBegDate,jdbcType=VARCHAR},
+      loan_end_dte = #{loanEndDte,jdbcType=VARCHAR},
+      due_day = #{dueDay,jdbcType=VARCHAR},
+      ext_rate = #{extRate,jdbcType=VARCHAR},
+      balance = #{balance,jdbcType=VARCHAR},
+      repay_type = #{repayType,jdbcType=VARCHAR},
+      total_repay_terms = #{totalRepayTerms,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

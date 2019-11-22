@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.NotifyInfoDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.NotifyInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="fun_code" jdbcType="VARCHAR" property="funCode" />
+    <result column="mer_code" jdbcType="VARCHAR" property="merCode" />
+    <result column="mer_name" jdbcType="VARCHAR" property="merName" />
+    <result column="fun_name" jdbcType="VARCHAR" property="funName" />
+    <result column="invocation_result" jdbcType="INTEGER" property="invocationResult" />
+    <result column="notify_time" jdbcType="TIMESTAMP" property="notifyTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="rxt.bsb.rest.po.NotifyInfoWithBLOBs">
+    <result column="send_original" jdbcType="LONGVARCHAR" property="sendOriginal" />
+    <result column="send_ciphertext" jdbcType="LONGVARCHAR" property="sendCiphertext" />
+    <result column="receive_original" jdbcType="LONGVARCHAR" property="receiveOriginal" />
+    <result column="receive_ciphertext" jdbcType="LONGVARCHAR" property="receiveCiphertext" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, fun_code, mer_code, mer_name, fun_name, invocation_result, notify_time, create_time
+  </sql>
+  <sql id="Blob_Column_List">
+    send_original, send_ciphertext, receive_original, receive_ciphertext
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_notify_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_notify_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.NotifyInfoWithBLOBs">
+    insert into t_notify_info (id, fun_code, mer_code, 
+      mer_name, fun_name, invocation_result, 
+      notify_time, create_time, send_original, 
+      send_ciphertext, receive_original, 
+      receive_ciphertext)
+    values (#{id,jdbcType=INTEGER}, #{funCode,jdbcType=VARCHAR}, #{merCode,jdbcType=VARCHAR}, 
+      #{merName,jdbcType=VARCHAR}, #{funName,jdbcType=VARCHAR}, #{invocationResult,jdbcType=INTEGER}, 
+      #{notifyTime,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{sendOriginal,jdbcType=LONGVARCHAR}, 
+      #{sendCiphertext,jdbcType=LONGVARCHAR}, #{receiveOriginal,jdbcType=LONGVARCHAR}, 
+      #{receiveCiphertext,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.NotifyInfoWithBLOBs">
+    insert into t_notify_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="funCode != null">
+        fun_code,
+      </if>
+      <if test="merCode != null">
+        mer_code,
+      </if>
+      <if test="merName != null">
+        mer_name,
+      </if>
+      <if test="funName != null">
+        fun_name,
+      </if>
+      <if test="invocationResult != null">
+        invocation_result,
+      </if>
+      <if test="notifyTime != null">
+        notify_time,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="sendOriginal != null">
+        send_original,
+      </if>
+      <if test="sendCiphertext != null">
+        send_ciphertext,
+      </if>
+      <if test="receiveOriginal != null">
+        receive_original,
+      </if>
+      <if test="receiveCiphertext != null">
+        receive_ciphertext,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="funCode != null">
+        #{funCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merCode != null">
+        #{merCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merName != null">
+        #{merName,jdbcType=VARCHAR},
+      </if>
+      <if test="funName != null">
+        #{funName,jdbcType=VARCHAR},
+      </if>
+      <if test="invocationResult != null">
+        #{invocationResult,jdbcType=INTEGER},
+      </if>
+      <if test="notifyTime != null">
+        #{notifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendOriginal != null">
+        #{sendOriginal,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sendCiphertext != null">
+        #{sendCiphertext,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="receiveOriginal != null">
+        #{receiveOriginal,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="receiveCiphertext != null">
+        #{receiveCiphertext,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.NotifyInfoWithBLOBs">
+    update t_notify_info
+    <set>
+      <if test="funCode != null">
+        fun_code = #{funCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merCode != null">
+        mer_code = #{merCode,jdbcType=VARCHAR},
+      </if>
+      <if test="merName != null">
+        mer_name = #{merName,jdbcType=VARCHAR},
+      </if>
+      <if test="funName != null">
+        fun_name = #{funName,jdbcType=VARCHAR},
+      </if>
+      <if test="invocationResult != null">
+        invocation_result = #{invocationResult,jdbcType=INTEGER},
+      </if>
+      <if test="notifyTime != null">
+        notify_time = #{notifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendOriginal != null">
+        send_original = #{sendOriginal,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sendCiphertext != null">
+        send_ciphertext = #{sendCiphertext,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="receiveOriginal != null">
+        receive_original = #{receiveOriginal,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="receiveCiphertext != null">
+        receive_ciphertext = #{receiveCiphertext,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="rxt.bsb.rest.po.NotifyInfoWithBLOBs">
+    update t_notify_info
+    set fun_code = #{funCode,jdbcType=VARCHAR},
+      mer_code = #{merCode,jdbcType=VARCHAR},
+      mer_name = #{merName,jdbcType=VARCHAR},
+      fun_name = #{funName,jdbcType=VARCHAR},
+      invocation_result = #{invocationResult,jdbcType=INTEGER},
+      notify_time = #{notifyTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      send_original = #{sendOriginal,jdbcType=LONGVARCHAR},
+      send_ciphertext = #{sendCiphertext,jdbcType=LONGVARCHAR},
+      receive_original = #{receiveOriginal,jdbcType=LONGVARCHAR},
+      receive_ciphertext = #{receiveCiphertext,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.NotifyInfo">
+    update t_notify_info
+    set fun_code = #{funCode,jdbcType=VARCHAR},
+      mer_code = #{merCode,jdbcType=VARCHAR},
+      mer_name = #{merName,jdbcType=VARCHAR},
+      fun_name = #{funName,jdbcType=VARCHAR},
+      invocation_result = #{invocationResult,jdbcType=INTEGER},
+      notify_time = #{notifyTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

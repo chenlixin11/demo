@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.OrderPayDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.OrderPay">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="agent_info_id" jdbcType="INTEGER" property="agentInfoId" />
+    <result column="pay_amount" jdbcType="DECIMAL" property="payAmount" />
+    <result column="own_amount" jdbcType="DECIMAL" property="ownAmount" />
+    <result column="loan_amount" jdbcType="DECIMAL" property="loanAmount" />
+    <result column="span_bank_pay_fee" jdbcType="DECIMAL" property="spanBankPayFee" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="detail_count" jdbcType="INTEGER" property="detailCount" />
+    <result column="into_acct_count" jdbcType="INTEGER" property="intoAcctCount" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="receive_type" jdbcType="INTEGER" property="receiveType" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, agent_info_id, pay_amount, own_amount, loan_amount, span_bank_pay_fee, pay_time, 
+    detail_count, into_acct_count, status, receive_type, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_order_pay
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_order_pay
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.OrderPay">
+    insert into t_order_pay (id, agent_info_id, pay_amount, 
+      own_amount, loan_amount, span_bank_pay_fee, 
+      pay_time, detail_count, into_acct_count, 
+      status, receive_type, create_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{agentInfoId,jdbcType=INTEGER}, #{payAmount,jdbcType=DECIMAL}, 
+      #{ownAmount,jdbcType=DECIMAL}, #{loanAmount,jdbcType=DECIMAL}, #{spanBankPayFee,jdbcType=DECIMAL}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{detailCount,jdbcType=INTEGER}, #{intoAcctCount,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{receiveType,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.OrderPay">
+    insert into t_order_pay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="agentInfoId != null">
+        agent_info_id,
+      </if>
+      <if test="payAmount != null">
+        pay_amount,
+      </if>
+      <if test="ownAmount != null">
+        own_amount,
+      </if>
+      <if test="loanAmount != null">
+        loan_amount,
+      </if>
+      <if test="spanBankPayFee != null">
+        span_bank_pay_fee,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="detailCount != null">
+        detail_count,
+      </if>
+      <if test="intoAcctCount != null">
+        into_acct_count,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="receiveType != null">
+        receive_type,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentInfoId != null">
+        #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="payAmount != null">
+        #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ownAmount != null">
+        #{ownAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="loanAmount != null">
+        #{loanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="spanBankPayFee != null">
+        #{spanBankPayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailCount != null">
+        #{detailCount,jdbcType=INTEGER},
+      </if>
+      <if test="intoAcctCount != null">
+        #{intoAcctCount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="receiveType != null">
+        #{receiveType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.OrderPay">
+    update t_order_pay
+    <set>
+      <if test="agentInfoId != null">
+        agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="payAmount != null">
+        pay_amount = #{payAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="ownAmount != null">
+        own_amount = #{ownAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="loanAmount != null">
+        loan_amount = #{loanAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="spanBankPayFee != null">
+        span_bank_pay_fee = #{spanBankPayFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="detailCount != null">
+        detail_count = #{detailCount,jdbcType=INTEGER},
+      </if>
+      <if test="intoAcctCount != null">
+        into_acct_count = #{intoAcctCount,jdbcType=INTEGER},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="receiveType != null">
+        receive_type = #{receiveType,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.OrderPay">
+    update t_order_pay
+    set agent_info_id = #{agentInfoId,jdbcType=INTEGER},
+      pay_amount = #{payAmount,jdbcType=DECIMAL},
+      own_amount = #{ownAmount,jdbcType=DECIMAL},
+      loan_amount = #{loanAmount,jdbcType=DECIMAL},
+      span_bank_pay_fee = #{spanBankPayFee,jdbcType=DECIMAL},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      detail_count = #{detailCount,jdbcType=INTEGER},
+      into_acct_count = #{intoAcctCount,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      receive_type = #{receiveType,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

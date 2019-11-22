@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.rest.dao.AgentInfoDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.rest.po.AgentInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="cust_no" jdbcType="VARCHAR" property="custNo" />
+    <result column="cust_name" jdbcType="VARCHAR" property="custName" />
+    <result column="mer_code" jdbcType="VARCHAR" property="merCode" />
+    <result column="cust_type" jdbcType="VARCHAR" property="custType" />
+    <result column="is_bank_staff" jdbcType="VARCHAR" property="isBankStaff" />
+    <result column="bank_code" jdbcType="VARCHAR" property="bankCode" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="birth_date" jdbcType="VARCHAR" property="birthDate" />
+    <result column="gender" jdbcType="VARCHAR" property="gender" />
+    <result column="country" jdbcType="VARCHAR" property="country" />
+    <result column="address_code" jdbcType="VARCHAR" property="addressCode" />
+    <result column="address_str" jdbcType="VARCHAR" property="addressStr" />
+    <result column="address_info" jdbcType="VARCHAR" property="addressInfo" />
+    <result column="home_tel" jdbcType="VARCHAR" property="homeTel" />
+    <result column="marriage" jdbcType="VARCHAR" property="marriage" />
+    <result column="spouse_name" jdbcType="VARCHAR" property="spouseName" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="living_status" jdbcType="VARCHAR" property="livingStatus" />
+    <result column="registered_house" jdbcType="VARCHAR" property="registeredHouse" />
+    <result column="registered_place" jdbcType="VARCHAR" property="registeredPlace" />
+    <result column="check_date" jdbcType="VARCHAR" property="checkDate" />
+    <result column="address_type" jdbcType="VARCHAR" property="addressType" />
+    <result column="spouse_cert_type" jdbcType="VARCHAR" property="spouseCertType" />
+    <result column="spouse_cert_no" jdbcType="VARCHAR" property="spouseCertNo" />
+    <result column="spouse_mobile" jdbcType="VARCHAR" property="spouseMobile" />
+    <result column="cust_flag" jdbcType="VARCHAR" property="custFlag" />
+    <result column="reg_cert_code" jdbcType="VARCHAR" property="regCertCode" />
+    <result column="manage_name" jdbcType="VARCHAR" property="manageName" />
+    <result column="manage_owner" jdbcType="VARCHAR" property="manageOwner" />
+    <result column="manage_address_id" jdbcType="VARCHAR" property="manageAddressId" />
+    <result column="manage_year" jdbcType="VARCHAR" property="manageYear" />
+    <result column="manage_address" jdbcType="VARCHAR" property="manageAddress" />
+    <result column="manage_trade" jdbcType="VARCHAR" property="manageTrade" />
+    <result column="manage_trade_name" jdbcType="VARCHAR" property="manageTradeName" />
+    <result column="manage_income" jdbcType="VARCHAR" property="manageIncome" />
+    <result column="manage_employee" jdbcType="VARCHAR" property="manageEmployee" />
+    <result column="commpanny_name" jdbcType="VARCHAR" property="commpannyName" />
+    <result column="commpanny_trade" jdbcType="VARCHAR" property="commpannyTrade" />
+    <result column="commpanny_trade_name" jdbcType="VARCHAR" property="commpannyTradeName" />
+    <result column="commpanny_type" jdbcType="VARCHAR" property="commpannyType" />
+    <result column="commpanny_address_id" jdbcType="VARCHAR" property="commpannyAddressId" />
+    <result column="commpanny_str" jdbcType="VARCHAR" property="commpannyStr" />
+    <result column="commpanny_address" jdbcType="VARCHAR" property="commpannyAddress" />
+    <result column="commpanny_phone" jdbcType="VARCHAR" property="commpannyPhone" />
+    <result column="comm_loan_income" jdbcType="VARCHAR" property="commLoanIncome" />
+    <result column="commpanny_year" jdbcType="VARCHAR" property="commpannyYear" />
+    <result column="commpanny_job" jdbcType="VARCHAR" property="commpannyJob" />
+    <result column="commpanny_title" jdbcType="VARCHAR" property="commpannyTitle" />
+    <result column="commpanny_vocation" jdbcType="VARCHAR" property="commpannyVocation" />
+    <result column="commpanny_post" jdbcType="VARCHAR" property="commpannyPost" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_id, cust_no, cust_name, mer_code, cust_type, is_bank_staff, bank_code, email,
+    age, birth_date, gender, country, address_code, address_str, address_info, home_tel,
+    marriage, spouse_name, education, living_status, registered_house, registered_place,
+    check_date, address_type, spouse_cert_type, spouse_cert_no, spouse_mobile, cust_flag, 
+    reg_cert_code, manage_name, manage_owner, manage_address_id, manage_year, manage_address, 
+    manage_trade, manage_trade_name, manage_income, manage_employee, commpanny_name, 
+    commpanny_trade, commpanny_trade_name, commpanny_type, commpanny_address_id, commpanny_str, 
+    commpanny_address, commpanny_phone, comm_loan_income, commpanny_year, commpanny_job, 
+    commpanny_title, commpanny_vocation, commpanny_post, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_agent_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_agent_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.rest.po.AgentInfo" keyProperty="id" useGeneratedKeys="true">
+    <selectKey resultType="java.lang.String" keyProperty="custNo" order="BEFORE" >
+      select nextval('cust_no');
+    </selectKey>
+    insert into t_agent_info (id, user_id, cust_no,
+      cust_name, mer_code,
+      cust_type, is_bank_staff, bank_code, 
+      email, age, birth_date, 
+      gender, country, address_code, 
+      address_str, address_info, home_tel, 
+      marriage, spouse_name, education, 
+      living_status, registered_house, registered_place, 
+      check_date, address_type, spouse_cert_type, 
+      spouse_cert_no, spouse_mobile, cust_flag, 
+      reg_cert_code, manage_name, manage_owner, 
+      manage_address_id, manage_year, manage_address, 
+      manage_trade, manage_trade_name, manage_income, 
+      manage_employee, commpanny_name, commpanny_trade, 
+      commpanny_trade_name, commpanny_type, commpanny_address_id, 
+      commpanny_str, commpanny_address, commpanny_phone, 
+      comm_loan_income, commpanny_year, commpanny_job, 
+      commpanny_title, commpanny_vocation, commpanny_post, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR},
+      #{custNo,jdbcType=VARCHAR},
+      #{custName,jdbcType=VARCHAR}, #{merCode,jdbcType=VARCHAR},
+      #{custType,jdbcType=VARCHAR}, #{isBankStaff,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{birthDate,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{country,jdbcType=VARCHAR}, #{addressCode,jdbcType=VARCHAR}, 
+      #{addressStr,jdbcType=VARCHAR}, #{addressInfo,jdbcType=VARCHAR}, #{homeTel,jdbcType=VARCHAR}, 
+      #{marriage,jdbcType=VARCHAR}, #{spouseName,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{livingStatus,jdbcType=VARCHAR}, #{registeredHouse,jdbcType=VARCHAR}, #{registeredPlace,jdbcType=VARCHAR}, 
+      #{checkDate,jdbcType=VARCHAR}, #{addressType,jdbcType=VARCHAR}, #{spouseCertType,jdbcType=VARCHAR}, 
+      #{spouseCertNo,jdbcType=VARCHAR}, #{spouseMobile,jdbcType=VARCHAR}, #{custFlag,jdbcType=VARCHAR}, 
+      #{regCertCode,jdbcType=VARCHAR}, #{manageName,jdbcType=VARCHAR}, #{manageOwner,jdbcType=VARCHAR}, 
+      #{manageAddressId,jdbcType=VARCHAR}, #{manageYear,jdbcType=VARCHAR}, #{manageAddress,jdbcType=VARCHAR}, 
+      #{manageTrade,jdbcType=VARCHAR}, #{manageTradeName,jdbcType=VARCHAR}, #{manageIncome,jdbcType=VARCHAR}, 
+      #{manageEmployee,jdbcType=VARCHAR}, #{commpannyName,jdbcType=VARCHAR}, #{commpannyTrade,jdbcType=VARCHAR}, 
+      #{commpannyTradeName,jdbcType=VARCHAR}, #{commpannyType,jdbcType=VARCHAR}, #{commpannyAddressId,jdbcType=VARCHAR}, 
+      #{commpannyStr,jdbcType=VARCHAR}, #{commpannyAddress,jdbcType=VARCHAR}, #{commpannyPhone,jdbcType=VARCHAR}, 
+      #{commLoanIncome,jdbcType=VARCHAR}, #{commpannyYear,jdbcType=VARCHAR}, #{commpannyJob,jdbcType=VARCHAR}, 
+      #{commpannyTitle,jdbcType=VARCHAR}, #{commpannyVocation,jdbcType=VARCHAR}, #{commpannyPost,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.rest.po.AgentInfo" keyColumn="id" keyProperty="custNo" useGeneratedKeys="true">
+    insert into t_agent_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if><if test="custNo != null">
+        cust_no,
+      </if>
+      <if test="custName != null">
+        cust_name,
+      </if>
+      <if test="merCode != null">
+        mer_code,
+      </if>
+      <if test="custType != null">
+        cust_type,
+      </if>
+      <if test="isBankStaff != null">
+        is_bank_staff,
+      </if>
+      <if test="bankCode != null">
+        bank_code,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="birthDate != null">
+        birth_date,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="country != null">
+        country,
+      </if>
+      <if test="addressCode != null">
+        address_code,
+      </if>
+      <if test="addressStr != null">
+        address_str,
+      </if>
+      <if test="addressInfo != null">
+        address_info,
+      </if>
+      <if test="homeTel != null">
+        home_tel,
+      </if>
+      <if test="marriage != null">
+        marriage,
+      </if>
+      <if test="spouseName != null">
+        spouse_name,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="livingStatus != null">
+        living_status,
+      </if>
+      <if test="registeredHouse != null">
+        registered_house,
+      </if>
+      <if test="registeredPlace != null">
+        registered_place,
+      </if>
+      <if test="checkDate != null">
+        check_date,
+      </if>
+      <if test="addressType != null">
+        address_type,
+      </if>
+      <if test="spouseCertType != null">
+        spouse_cert_type,
+      </if>
+      <if test="spouseCertNo != null">
+        spouse_cert_no,
+      </if>
+      <if test="spouseMobile != null">
+        spouse_mobile,
+      </if>
+      <if test="custFlag != null">
+        cust_flag,
+      </if>
+      <if test="regCertCode != null">
+        reg_cert_code,
+      </if>
+      <if test="manageName != null">
+        manage_name,
+      </if>
+      <if test="manageOwner != null">
+        manage_owner,
+      </if>
+      <if test="manageAddressId != null">
+        manage_address_id,
+      </if>
+      <if test="manageYear != null">
+        manage_year,
+      </if>
+      <if test="manageAddress != null">
+        manage_address,
+      </if>
+      <if test="manageTrade != null">
+        manage_trade,
+      </if>
+      <if test="manageTradeName != null">
+        manage_trade_name,
+      </if>
+      <if test="manageIncome != null">
+        manage_income,
+      </if>
+      <if test="manageEmployee != null">
+        manage_employee,
+      </if>
+      <if test="commpannyName != null">
+        commpanny_name,
+      </if>
+      <if test="commpannyTrade != null">
+        commpanny_trade,
+      </if>
+      <if test="commpannyTradeName != null">
+        commpanny_trade_name,
+      </if>
+      <if test="commpannyType != null">
+        commpanny_type,
+      </if>
+      <if test="commpannyAddressId != null">
+        commpanny_address_id,
+      </if>
+      <if test="commpannyStr != null">
+        commpanny_str,
+      </if>
+      <if test="commpannyAddress != null">
+        commpanny_address,
+      </if>
+      <if test="commpannyPhone != null">
+        commpanny_phone,
+      </if>
+      <if test="commLoanIncome != null">
+        comm_loan_income,
+      </if>
+      <if test="commpannyYear != null">
+        commpanny_year,
+      </if>
+      <if test="commpannyJob != null">
+        commpanny_job,
+      </if>
+      <if test="commpannyTitle != null">
+        commpanny_title,
+      </if>
+      <if test="commpannyVocation != null">
+        commpanny_vocation,
+      </if>
+      <if test="commpannyPost != null">
+        commpanny_post,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="custNo != null">
+        #{custNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="merCode != null">
+        #{merCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null">
+        #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="isBankStaff != null">
+        #{isBankStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birthDate != null">
+        #{birthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCode != null">
+        #{addressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addressStr != null">
+        #{addressStr,jdbcType=VARCHAR},
+      </if>
+      <if test="addressInfo != null">
+        #{addressInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="homeTel != null">
+        #{homeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseName != null">
+        #{spouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="livingStatus != null">
+        #{livingStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredHouse != null">
+        #{registeredHouse,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredPlace != null">
+        #{registeredPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null">
+        #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="addressType != null">
+        #{addressType,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseCertType != null">
+        #{spouseCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseCertNo != null">
+        #{spouseCertNo,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseMobile != null">
+        #{spouseMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="custFlag != null">
+        #{custFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="regCertCode != null">
+        #{regCertCode,jdbcType=VARCHAR},
+      </if>
+      <if test="manageName != null">
+        #{manageName,jdbcType=VARCHAR},
+      </if>
+      <if test="manageOwner != null">
+        #{manageOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="manageAddressId != null">
+        #{manageAddressId,jdbcType=VARCHAR},
+      </if>
+      <if test="manageYear != null">
+        #{manageYear,jdbcType=VARCHAR},
+      </if>
+      <if test="manageAddress != null">
+        #{manageAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="manageTrade != null">
+        #{manageTrade,jdbcType=VARCHAR},
+      </if>
+      <if test="manageTradeName != null">
+        #{manageTradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="manageIncome != null">
+        #{manageIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="manageEmployee != null">
+        #{manageEmployee,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyName != null">
+        #{commpannyName,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyTrade != null">
+        #{commpannyTrade,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyTradeName != null">
+        #{commpannyTradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyType != null">
+        #{commpannyType,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyAddressId != null">
+        #{commpannyAddressId,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyStr != null">
+        #{commpannyStr,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyAddress != null">
+        #{commpannyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyPhone != null">
+        #{commpannyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="commLoanIncome != null">
+        #{commLoanIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyYear != null">
+        #{commpannyYear,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyJob != null">
+        #{commpannyJob,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyTitle != null">
+        #{commpannyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyVocation != null">
+        #{commpannyVocation,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyPost != null">
+        #{commpannyPost,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.rest.po.AgentInfo">
+    update t_agent_info
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="custNo != null">
+        cust_no = #{custNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null">
+        cust_name = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="merCode != null">
+        mer_code = #{merCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null">
+        cust_type = #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="isBankStaff != null">
+        is_bank_staff = #{isBankStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null">
+        bank_code = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="birthDate != null">
+        birth_date = #{birthDate,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="country != null">
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCode != null">
+        address_code = #{addressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="addressStr != null">
+        address_str = #{addressStr,jdbcType=VARCHAR},
+      </if>
+      <if test="addressInfo != null">
+        address_info = #{addressInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="homeTel != null">
+        home_tel = #{homeTel,jdbcType=VARCHAR},
+      </if>
+      <if test="marriage != null">
+        marriage = #{marriage,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseName != null">
+        spouse_name = #{spouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="livingStatus != null">
+        living_status = #{livingStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredHouse != null">
+        registered_house = #{registeredHouse,jdbcType=VARCHAR},
+      </if>
+      <if test="registeredPlace != null">
+        registered_place = #{registeredPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null">
+        check_date = #{checkDate,jdbcType=VARCHAR},
+      </if>
+      <if test="addressType != null">
+        address_type = #{addressType,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseCertType != null">
+        spouse_cert_type = #{spouseCertType,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseCertNo != null">
+        spouse_cert_no = #{spouseCertNo,jdbcType=VARCHAR},
+      </if>
+      <if test="spouseMobile != null">
+        spouse_mobile = #{spouseMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="custFlag != null">
+        cust_flag = #{custFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="regCertCode != null">
+        reg_cert_code = #{regCertCode,jdbcType=VARCHAR},
+      </if>
+      <if test="manageName != null">
+        manage_name = #{manageName,jdbcType=VARCHAR},
+      </if>
+      <if test="manageOwner != null">
+        manage_owner = #{manageOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="manageAddressId != null">
+        manage_address_id = #{manageAddressId,jdbcType=VARCHAR},
+      </if>
+      <if test="manageYear != null">
+        manage_year = #{manageYear,jdbcType=VARCHAR},
+      </if>
+      <if test="manageAddress != null">
+        manage_address = #{manageAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="manageTrade != null">
+        manage_trade = #{manageTrade,jdbcType=VARCHAR},
+      </if>
+      <if test="manageTradeName != null">
+        manage_trade_name = #{manageTradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="manageIncome != null">
+        manage_income = #{manageIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="manageEmployee != null">
+        manage_employee = #{manageEmployee,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyName != null">
+        commpanny_name = #{commpannyName,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyTrade != null">
+        commpanny_trade = #{commpannyTrade,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyTradeName != null">
+        commpanny_trade_name = #{commpannyTradeName,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyType != null">
+        commpanny_type = #{commpannyType,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyAddressId != null">
+        commpanny_address_id = #{commpannyAddressId,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyStr != null">
+        commpanny_str = #{commpannyStr,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyAddress != null">
+        commpanny_address = #{commpannyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyPhone != null">
+        commpanny_phone = #{commpannyPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="commLoanIncome != null">
+        comm_loan_income = #{commLoanIncome,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyYear != null">
+        commpanny_year = #{commpannyYear,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyJob != null">
+        commpanny_job = #{commpannyJob,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyTitle != null">
+        commpanny_title = #{commpannyTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyVocation != null">
+        commpanny_vocation = #{commpannyVocation,jdbcType=VARCHAR},
+      </if>
+      <if test="commpannyPost != null">
+        commpanny_post = #{commpannyPost,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.rest.po.AgentInfo">
+    update t_agent_info
+    set user_id = #{userId,jdbcType=VARCHAR},
+      cust_no = #{custNo,jdbcType=VARCHAR},
+      cust_name = #{custName,jdbcType=VARCHAR},
+      mer_code = #{merCode,jdbcType=VARCHAR},
+      cust_type = #{custType,jdbcType=VARCHAR},
+      is_bank_staff = #{isBankStaff,jdbcType=VARCHAR},
+      bank_code = #{bankCode,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      birth_date = #{birthDate,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      country = #{country,jdbcType=VARCHAR},
+      address_code = #{addressCode,jdbcType=VARCHAR},
+      address_str = #{addressStr,jdbcType=VARCHAR},
+      address_info = #{addressInfo,jdbcType=VARCHAR},
+      home_tel = #{homeTel,jdbcType=VARCHAR},
+      marriage = #{marriage,jdbcType=VARCHAR},
+      spouse_name = #{spouseName,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      living_status = #{livingStatus,jdbcType=VARCHAR},
+      registered_house = #{registeredHouse,jdbcType=VARCHAR},
+      registered_place = #{registeredPlace,jdbcType=VARCHAR},
+      check_date = #{checkDate,jdbcType=VARCHAR},
+      address_type = #{addressType,jdbcType=VARCHAR},
+      spouse_cert_type = #{spouseCertType,jdbcType=VARCHAR},
+      spouse_cert_no = #{spouseCertNo,jdbcType=VARCHAR},
+      spouse_mobile = #{spouseMobile,jdbcType=VARCHAR},
+      cust_flag = #{custFlag,jdbcType=VARCHAR},
+      reg_cert_code = #{regCertCode,jdbcType=VARCHAR},
+      manage_name = #{manageName,jdbcType=VARCHAR},
+      manage_owner = #{manageOwner,jdbcType=VARCHAR},
+      manage_address_id = #{manageAddressId,jdbcType=VARCHAR},
+      manage_year = #{manageYear,jdbcType=VARCHAR},
+      manage_address = #{manageAddress,jdbcType=VARCHAR},
+      manage_trade = #{manageTrade,jdbcType=VARCHAR},
+      manage_trade_name = #{manageTradeName,jdbcType=VARCHAR},
+      manage_income = #{manageIncome,jdbcType=VARCHAR},
+      manage_employee = #{manageEmployee,jdbcType=VARCHAR},
+      commpanny_name = #{commpannyName,jdbcType=VARCHAR},
+      commpanny_trade = #{commpannyTrade,jdbcType=VARCHAR},
+      commpanny_trade_name = #{commpannyTradeName,jdbcType=VARCHAR},
+      commpanny_type = #{commpannyType,jdbcType=VARCHAR},
+      commpanny_address_id = #{commpannyAddressId,jdbcType=VARCHAR},
+      commpanny_str = #{commpannyStr,jdbcType=VARCHAR},
+      commpanny_address = #{commpannyAddress,jdbcType=VARCHAR},
+      commpanny_phone = #{commpannyPhone,jdbcType=VARCHAR},
+      comm_loan_income = #{commLoanIncome,jdbcType=VARCHAR},
+      commpanny_year = #{commpannyYear,jdbcType=VARCHAR},
+      commpanny_job = #{commpannyJob,jdbcType=VARCHAR},
+      commpanny_title = #{commpannyTitle,jdbcType=VARCHAR},
+      commpanny_vocation = #{commpannyVocation,jdbcType=VARCHAR},
+      commpanny_post = #{commpannyPost,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="queryAgentInfoList" parameterType="rxt.bsb.rest.po.AgentInfo" resultMap="BaseResultMap">
+    SELECT
+      <include refid="Base_Column_List" />
+    FROM
+      t_agent_info t
+    where  1= 1
+    <if test="custName != null and custName != '' ">
+      and t.cust_name  like CONCAT( '%',#{custName,jdbcType=VARCHAR} , '%' )
+    </if>
+    <if test="custNo != null and custNo != '' ">
+      and t.cust_no  = #{custNo,jdbcType=VARCHAR}
+    </if>
+    <if test="custType != null and custType != '' ">
+      and t.cust_type  = #{custType,jdbcType=VARCHAR}
+    </if>
+    <if test="isBankStaff != null and isBankStaff != '' ">
+      and t.is_bank_staff  = #{isBankStaff,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="queryAgentInfoByCustName" resultType="rxt.bsb.rest.po.AgentInfo">
+    select t.cust_no,t.id,t.cust_name
+    from t_agent_info t
+    where t.cust_name like CONCAT( '%',#{custName,jdbcType=VARCHAR} , '%' )
+  </select>
+  <select id="selectByCustNo" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from t_agent_info
+    where cust_no = #{custNo,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryAgentInfoByUsersId" resultMap="BaseResultMap">
+    select
+      <include refid="Base_Column_List" />
+    from t_agent_info
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+
+</mapper>

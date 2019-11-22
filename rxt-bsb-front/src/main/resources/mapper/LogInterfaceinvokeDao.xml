@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="rxt.bsb.front.dao.LogInterfaceinvokeDao">
+  <resultMap id="BaseResultMap" type="rxt.bsb.front.po.LogInterfaceinvoke">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="business_id" jdbcType="INTEGER" property="businessId" />
+    <result column="fun_code" jdbcType="VARCHAR" property="funCode" />
+    <result column="fun_name" jdbcType="VARCHAR" property="funName" />
+    <result column="invoke_time" jdbcType="TIMESTAMP" property="invokeTime" />
+    <result column="invoke_result" jdbcType="INTEGER" property="invokeResult" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="rxt.bsb.front.po.LogInterfaceinvokeWithBLOBs">
+    <result column="send_package" jdbcType="LONGVARCHAR" property="sendPackage" />
+    <result column="receive_package" jdbcType="LONGVARCHAR" property="receivePackage" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, business_id, fun_code, fun_name, invoke_time, invoke_result
+  </sql>
+  <sql id="Blob_Column_List">
+    send_package, receive_package
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_log_interfaceinvoke
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_log_interfaceinvoke
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="rxt.bsb.front.po.LogInterfaceinvokeWithBLOBs">
+    insert into t_log_interfaceinvoke (id, business_id, fun_code,
+      fun_name, invoke_time, invoke_result,
+      send_package, receive_package)
+    values (#{id,jdbcType=INTEGER}, #{businessId,jdbcType=INTEGER}, #{funCode,jdbcType=VARCHAR},
+      #{funName,jdbcType=VARCHAR}, #{invokeTime,jdbcType=TIMESTAMP}, #{invokeResult,jdbcType=INTEGER},
+      #{sendPackage,jdbcType=LONGVARCHAR}, #{receivePackage,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="rxt.bsb.front.po.LogInterfaceinvokeWithBLOBs">
+    insert into t_log_interfaceinvoke
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="businessId != null">
+        business_id,
+      </if>
+      <if test="funCode != null">
+        fun_code,
+      </if>
+      <if test="funName != null">
+        fun_name,
+      </if>
+      <if test="invokeTime != null">
+        invoke_time,
+      </if>
+      <if test="invokeResult != null">
+        invoke_result,
+      </if>
+      <if test="sendPackage != null">
+        send_package,
+      </if>
+      <if test="receivePackage != null">
+        receive_package,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="businessId != null">
+        #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="funCode != null">
+        #{funCode,jdbcType=VARCHAR},
+      </if>
+      <if test="funName != null">
+        #{funName,jdbcType=VARCHAR},
+      </if>
+      <if test="invokeTime != null">
+        #{invokeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invokeResult != null">
+        #{invokeResult,jdbcType=INTEGER},
+      </if>
+      <if test="sendPackage != null">
+        #{sendPackage,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="receivePackage != null">
+        #{receivePackage,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="rxt.bsb.front.po.LogInterfaceinvokeWithBLOBs">
+    update t_log_interfaceinvoke
+    <set>
+      <if test="businessId != null">
+        business_id = #{businessId,jdbcType=INTEGER},
+      </if>
+      <if test="funCode != null">
+        fun_code = #{funCode,jdbcType=VARCHAR},
+      </if>
+      <if test="funName != null">
+        fun_name = #{funName,jdbcType=VARCHAR},
+      </if>
+      <if test="invokeTime != null">
+        invoke_time = #{invokeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invokeResult != null">
+        invoke_result = #{invokeResult,jdbcType=INTEGER},
+      </if>
+      <if test="sendPackage != null">
+        send_package = #{sendPackage,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="receivePackage != null">
+        receive_package = #{receivePackage,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="rxt.bsb.front.po.LogInterfaceinvokeWithBLOBs">
+    update t_log_interfaceinvoke
+    set business_id = #{businessId,jdbcType=INTEGER},
+      fun_code = #{funCode,jdbcType=VARCHAR},
+      fun_name = #{funName,jdbcType=VARCHAR},
+      invoke_time = #{invokeTime,jdbcType=TIMESTAMP},
+      invoke_result = #{invokeResult,jdbcType=INTEGER},
+      send_package = #{sendPackage,jdbcType=LONGVARCHAR},
+      receive_package = #{receivePackage,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="rxt.bsb.front.po.LogInterfaceinvoke">
+    update t_log_interfaceinvoke
+    set business_id = #{businessId,jdbcType=INTEGER},
+      fun_code = #{funCode,jdbcType=VARCHAR},
+      fun_name = #{funName,jdbcType=VARCHAR},
+      invoke_time = #{invokeTime,jdbcType=TIMESTAMP},
+      invoke_result = #{invokeResult,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
